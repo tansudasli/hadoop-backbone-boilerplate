@@ -18,9 +18,9 @@ Distributed installation of hadoop ecosystem on GCP IaaS.
 
 ### How to Start
 
-Create gcp account and define billings etc.. Then,
+Create gcp account and billing account etc.. manually, Then
 
 1. Configure your _local_ or use _gshell_, after cloning the git-reporitory.
     - for local, `gcloud auth list` check active gcp account. `gcloud auth login` if necessary
-2. Run `./preperations.sh` to create project on GCP
+2. Run `./preperations.sh` to create project, link billing account on GCP
 3. Run `./create-machines.sh` to create machines on GCP

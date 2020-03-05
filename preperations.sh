@@ -12,3 +12,6 @@ echo "check active gcp account"
 
 gcloud projects create ${PROJECT_ID} \
                        --name 'hadoop-cluster'
+
+gcloud alpha billing projects link ${PROJECT_ID} \
+                       --billing-account 00F27E-4EE4CA-3797DD
