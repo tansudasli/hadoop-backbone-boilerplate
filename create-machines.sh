@@ -37,7 +37,7 @@ do
       x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONE[i]}/diskTypes/pd-ssd,name=${HADOOP_ECOSYSTEM[j]}-disk,device-name=${HADOOP_ECOSYSTEM[j]}" 
    done
    x=$x" --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
-   x=$x" --metadata-from-file user-data=./cloud-config.yaml"
+   x=$x" --metadata-from-file user-data=./cloud-init.yaml"
    echo $x | sh
 
 done
