@@ -1,0 +1,13 @@
+#cloud-config
+
+# runs only once, while instance created
+# check /var/log/syslog
+runcmd:
+ - [ wget, "http://kozyatagi.mirror.guzel.net.tr/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz", -O, /hadoop-3.2.1.tar.gz]
+ - [ sh, -c, echo "=========helloworld'=========" ]
+
+packages:
+ - openjdk-8-jre
+
+# package_upgrade: true
+# package_update: true

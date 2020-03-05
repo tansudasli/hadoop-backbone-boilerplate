@@ -5,7 +5,7 @@ echo "edit env variables w/ your valid values!"
 export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
 
 export REGION=europe-west4
-export ZONE=(europe-west4-a europe-west4-b europe-west4-c)
+export ZONE=(europe-west4-a) #(europe-west4-a europe-west4-b europe-west4-c)
 export INSTANCE_NAME=(machine-1 machine-2 machine-3)
 
 # export INGESTION_BUCKET_NAME=
@@ -31,35 +31,39 @@ do
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
    x=$x" --boot-disk-type=pd-ssd"
-   x=$x" --boot-disk-device-name=machine-1"
+   x=$x" --boot-disk-device-name=machine-${i+1}"
    for j in ${!HADOOP_ECOSYSTEM[@]} 
    do 
       x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONE[i]}/diskTypes/pd-ssd,name=${HADOOP_ECOSYSTEM[j]}-disk,device-name=${HADOOP_ECOSYSTEM[j]}" 
    done
    x=$x" --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
-
+   x=$x" --metadata-from-file user-data=./cloud-config.yaml"
    echo $x | sh
 
 done
 
-# firewall rules - tag based selection
-gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-allow-http \
-    --direction=INGRESS \
-    --priority=1000 \
-    --network=default \
-    --action=ALLOW \
-    --rules=tcp:80 \
-    --source-ranges=0.0.0.0/0 \
-    --target-tags=hadoop
+# todo: startup-script vs cloud-init
+# todo: format attached disks
+# todo: configurations
 
-gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-allow-https \
-    --direction=INGRESS \
-    --priority=1000 \
-    --network=default \
-    --action=ALLOW \
-    --rules=tcp:443 \
-    --source-ranges=0.0.0.0/0 \
-    --target-tags=hadoop
+# firewall rules - tag based selection
+# gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-allow-http \
+#     --direction=INGRESS \
+#     --priority=1000 \
+#     --network=default \
+#     --action=ALLOW \
+#     --rules=tcp:80 \
+#     --source-ranges=0.0.0.0/0 \
+#     --target-tags=hadoop
+
+# gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-allow-https \
+#     --direction=INGRESS \
+#     --priority=1000 \
+#     --network=default \
+#     --action=ALLOW \
+#     --rules=tcp:443 \
+#     --source-ranges=0.0.0.0/0 \
+#     --target-tags=hadoop
 
 
 
@@ -68,5 +72,5 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-all
 
 
 # then connect w/ ssh
-gcloud compute --project $PROJECT_ID ssh --zone $ZONE_NAME $INSTANCE_NAME
+# gcloud compute --project $PROJECT_ID ssh --zone $ZONE_NAME $INSTANCE_NAME
 
