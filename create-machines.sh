@@ -8,6 +8,12 @@ export REGION=europe-west4
 export ZONE=(europe-west4-a) #(europe-west4-a europe-west4-b europe-west4-c)
 export INSTANCE_NAME=(machine-1 machine-2 machine-3)
 
+# device-ids will be in linux = sdb sdc sdd ....
+# todo: so check cloud-init.yaml file for disk format/mount steps!
+export HADOOP_ECOSYSTEM=(hdfs hbase zookeeper)
+export DEVICE_IDs=(sdb sdc sdd)                # lsbk in linux-shell shows the device names
+
+
 # export INGESTION_BUCKET_NAME=
 # export AIRFLOW_BUCKET_NAME=.....         # get from gcs buckets and update
 
@@ -42,7 +48,6 @@ do
 
 done
 
-# todo: startup-script vs cloud-init
 # todo: format attached disks
 # todo: configurations
 
