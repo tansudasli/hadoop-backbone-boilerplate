@@ -17,16 +17,26 @@ export DEVICE_IDs=(sdb sdc sdd)                # lsbk in linux-shell shows the d
 # export INGESTION_BUCKET_NAME=
 # export AIRFLOW_BUCKET_NAME=.....         # get from gcs buckets and update
 
-# ----------- create machines ---------
+# ----------- create static-IPs ---------
 echo "create machines on 1 region, for 3 zones and N additional-disks => streched distributed, low latency b/w zones"
 
+# creates static-regional IPs, then assigns to compute-engines
+for i in ${!ZONE[@]}
+do
+gcloud compute addresses create ${INSTANCE_NAME[i]} \
+   --project=${PROJECT_ID} \
+   --region ${REGION}
+done
+
+# ----------- create machines and assign static-IPs ---------
 # deletes data disk! keep in mind 
 # creates compute engine w/ N additional-disk in N zone
 for i in ${!ZONE[@]}
 do
-   x="gcloud beta compute --project=hadoop-sandbox-270208 instances create machine-${i+1}"
+   x="gcloud beta compute --project=${PROJECT_ID} instances create machine-${i+1}"
    x=$x" --zone=${ZONE[i]}"
-   x=$x"  --machine-type=custom-12-79872"
+   x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAME[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
+   x=$x" --machine-type=custom-12-79872"
    x=$x" --subnet=default"
    x=$x" --network-tier=PREMIUM"
    x=$x" --maintenance-policy=MIGRATE"
@@ -48,8 +58,13 @@ do
 
 done
 
+
+
+# gcloud compute addresses describe machine-1 --region=europe-west4 --format='get(address)'
+
 # todo: format attached disks
-# todo: configurations
+# todo: create static-regional IP addresses, and assign 
+# todo: hadoop-stack configurations
 
 # firewall rules - tag based selection
 # gcloud compute --project=hadoop-sandbox-270208 firewall-rules create default-allow-http \
