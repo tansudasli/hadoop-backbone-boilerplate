@@ -3,7 +3,7 @@
 # todo: edit disk format and mounting for additional disks!
 # todo: check /var/log/syslog!
 # todo: check disks mounted w/ lsblk and df -h 
-# todo: check java -v, ssh -V, pdsh -V, bin/hadoop version
+# todo: check => java -v, ssh -V, pdsh -V, bin/hadoop version
 runcmd:
  - echo "=========download-files========="
  - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz

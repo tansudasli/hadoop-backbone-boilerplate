@@ -1,11 +1,8 @@
 # run on compute engine
 
-# global env mngmt=> /etc/environment
-
 sudo echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) > /hadoop-3.2.1/etc/hadoop/hadoop-env.sh
 
-
-cat >> /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
+cat > /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
 <configuration>
     <property>
         <name>fs.defaultFS</name>
@@ -14,7 +11,7 @@ cat >> /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
 </configuration>
 EOL
 
-cat >> /hadoop-3.2.1/etc/hadoop/hdfs-site.xml <<EOL
+cat > /hadoop-3.2.1/etc/hadoop/hdfs-site.xml <<EOL
 <configuration>
     <property>
         <name>dfs.replication</name>
@@ -22,3 +19,5 @@ cat >> /hadoop-3.2.1/etc/hadoop/hdfs-site.xml <<EOL
     </property>
 </configuration>
 EOL
+
+# todo:  check => ./hadoop-3.2.1/bin/hadoop version
