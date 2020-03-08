@@ -1,6 +1,6 @@
 # run on compute engine
 
-sudo echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) > /hadoop-3.2.1/etc/hadoop/hadoop-env.sh
+sudo echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> /hadoop-3.2.1/etc/hadoop/hadoop-env.sh
 
 cat > /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
 <configuration>

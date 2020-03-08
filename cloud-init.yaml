@@ -19,6 +19,9 @@ runcmd:
  - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
  - echo "=========extract-hadoop-files========="
  - tar -xzf /hadoop-3.2.1.tar.gz -C /
+ - echo "=========bug-fix========="
+ - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
+#  - echo "export HADOOP_HOME=/hadoop-3.2.1/" >> /etc/environment
  - echo "=========end========="
 
 packages:
