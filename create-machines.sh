@@ -42,7 +42,7 @@ do
    x=$x" --maintenance-policy=MIGRATE"
    x=$x" --service-account=762922822926-compute@developer.gserviceaccount.com"
    x=$x" --scopes=https://www.googleapis.com/auth/cloud-platform"
-   x=$x" --tags=hadoop"
+   x=$x" --tags=hadoop, name-node"
    x=$x" --image=ubuntu-1910-eoan-v20200211"
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
@@ -85,7 +85,15 @@ done
 #     --source-ranges=0.0.0.0/0 \
 #     --target-tags=hadoop
 
-
+gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allow-management \
+    --description="hadoop management ports" \
+    --direction=INGRESS \
+    --priority=1000 \
+    --network=default \
+    --action=ALLOW \
+    --rules=tcp:9870 \
+    --source-ranges=0.0.0.0/0 \
+    --target-tags=name-node
 
 
 

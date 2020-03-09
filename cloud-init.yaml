@@ -19,10 +19,18 @@ runcmd:
  - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
  - echo "=========extract-hadoop-files========="
  - tar -xzvf /hadoop-3.2.1.tar.gz -C /
+ - cp /hadoop-3.2.1/etc/hadoop/hadoop-env.sh /hadoop-3.2.1/etc/hadoop/hadoop-env-backup.sh
+ - cp /hadoop-3.2.1/etc/hadoop/core-site.xml /hadoop-3.2.1/etc/hadoop/core-site-backup.xml
+ - cp /hadoop-3.2.1/etc/hadoop/hdfs-site.xml /hadoop-3.2.1/etc/hadoop/hdfs-site-backup.xml
+ - echo "=========ssh-passwordless========="
+ - ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ - chmod 0600 ~/.ssh/authorized_keys
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
-#  - echo "export HADOOP_HOME=/hadoop-3.2.1/" >> /etc/environment
- - echo "=========end========="
+ - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
+ - echo "export HADOOP_HOME=/hadoop-3.2.1/" >> /etc/environment >> /etc/environment
+ - echo "=========end ${USER} ========="
 
 packages:
  - openjdk-8-jre

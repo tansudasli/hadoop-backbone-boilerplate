@@ -1,8 +1,12 @@
 # run on compute engine
 
-sudo echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> /hadoop-3.2.1/etc/hadoop/hadoop-env.sh
 
-cat > /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
+# adds below lines into same file
+echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+
+# creates as new file
+cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 <configuration>
     <property>
         <name>fs.defaultFS</name>
@@ -11,7 +15,8 @@ cat > /hadoop-3.2.1/etc/hadoop/core-site.xml <<EOL
 </configuration>
 EOL
 
-cat > /hadoop-3.2.1/etc/hadoop/hdfs-site.xml <<EOL
+# creates as new file
+cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 <configuration>
     <property>
         <name>dfs.replication</name>
@@ -21,3 +26,6 @@ cat > /hadoop-3.2.1/etc/hadoop/hdfs-site.xml <<EOL
 EOL
 
 # todo:  check => ./hadoop-3.2.1/bin/hadoop version
+
+# format for the first time
+${HADOOP_HOME}/bin/hdfs namenode -format
