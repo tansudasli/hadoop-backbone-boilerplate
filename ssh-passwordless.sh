@@ -1,7 +1,5 @@
 
 # switch to hadoop user!
-sudo -u hadoop -i 
-
 
 # create ssh-keys
 ssh-keygen -t rsa -P '' -f /home/hadoop/.ssh/id_rsa
