@@ -29,14 +29,11 @@ runcmd:
  - sudo cp /etc/fstab /etc/fstab.backup
  - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
  - echo "=========extract-hadoop-files========="
- - sudo -u hadoop -i tar -xzvf /hadoop-3.2.1.tar.gz
- - cp /hadoop-3.2.1/etc/hadoop/hadoop-env.sh /hadoop-3.2.1/etc/hadoop/hadoop-env-backup.sh
- - cp /hadoop-3.2.1/etc/hadoop/core-site.xml /hadoop-3.2.1/etc/hadoop/core-site-backup.xml
- - cp /hadoop-3.2.1/etc/hadoop/hdfs-site.xml /hadoop-3.2.1/etc/hadoop/hdfs-site-backup.xml
+ - sudo -u hadoop -i tar -xzf /hadoop-3.2.1.tar.gz
  - echo "=========ssh-passwordless========="
- - ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
- - cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
- - chmod 0600 ~/.ssh/authorized_keys
+ - sudo -u hadoop -i ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+ - sudo -u hadoop -i cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+ - sudo -u hadoop -i chmod 0600 ~/.ssh/authorized_keys
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
