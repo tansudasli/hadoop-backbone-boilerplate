@@ -22,8 +22,9 @@ Create a GCP account and billing account etc..., Then
 
 1. Configure your _local_ for gcloud CLI or use _gshell_, after cloning the git-reporitory.
     - for local, run `gcloud auth list` to check active gcp account. And `gcloud auth login` if necessary
-2. Run `./preparations.sh` to create project, and to link billing account on GCP
-3. Run `./create-machines.sh` to create machines, and installations w/ `cloud-init.yaml` file on GCP
-4. Run `./configure-hadoop.sh` to configure HDFS
+2. `cd home/hadoop/hadoop-sandbox` folder (cloned git repository)
+3. Run `./preparations.sh` to create project, and to link billing account on GCP
+4. Run `./create-machines.sh` to create machines, and installations w/ `cloud-init.yaml` file on GCP
 5. `sudo -u hadoop -i` to switch hadoop user
+    - Run `./configure-hadoop.sh` to configure HDFS
 6. Check `http://IP:9870` 

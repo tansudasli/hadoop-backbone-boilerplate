@@ -1,10 +1,10 @@
 # run on compute engine
+# todo:  check => $HADOOP_HOME/bin/hadoop version
 
-
-# adds below lines into same file
+# set some env values
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo export HADOOP_LOG_DIR=/hdfs/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+# echo export HADOOP_LOG_DIR=/hdfs/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 
 
 # add hostname and IPs
@@ -35,7 +35,6 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 </configuration>
 EOL
 
-# todo:  check => ./hadoop-3.2.1/bin/hadoop version
 
 # format for the first time
 ${HADOOP_HOME}/bin/hdfs namenode -format

@@ -40,7 +40,7 @@ runcmd:
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
- - echo "export HADOOP_HOME=/hadoop-3.2.1/" >> /etc/environment >> /etc/environment
+ - echo "export HADOOP_HOME=/home/hadoop/hadoop-3.2.1" >> /etc/environment
  - echo "=========end ${USER} ========="
 
 packages:
