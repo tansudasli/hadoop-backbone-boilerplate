@@ -1,5 +1,16 @@
 #cloud-config
 
+users:
+ - default
+ - name: hadoop
+   groups: [ubuntu, adm, google-sudoers]
+   lock_passwd: false
+   shell: /bin/bash
+
+
+package_upgrade: true
+package_update: true
+
 # todo: edit disk format and mounting for additional disks!
 # todo: check /var/log/syslog!
 # todo: check disks mounted w/ lsblk and df -h 
@@ -10,7 +21,7 @@ runcmd:
  - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz
  - wget "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /zookeeper-3.4.14.tar.gz
  - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hbase/2.2.3/hbase-2.2.3-bin.tar.gz" -O /hbase-2.2.3-bin.tar.gz
- - git clone https://github.com/tansudasli/hadoop-sandbox.git
+ - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-sandbox.git
  - echo "=========preparare-additional-disks-hdfs========="
  - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
  - sudo mkdir -p /hdfs
@@ -18,7 +29,7 @@ runcmd:
  - sudo cp /etc/fstab /etc/fstab.backup
  - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
  - echo "=========extract-hadoop-files========="
- - tar -xzvf /hadoop-3.2.1.tar.gz -C /
+ - sudo -u hadoop -i tar -xzvf /hadoop-3.2.1.tar.gz
  - cp /hadoop-3.2.1/etc/hadoop/hadoop-env.sh /hadoop-3.2.1/etc/hadoop/hadoop-env-backup.sh
  - cp /hadoop-3.2.1/etc/hadoop/core-site.xml /hadoop-3.2.1/etc/hadoop/core-site-backup.xml
  - cp /hadoop-3.2.1/etc/hadoop/hdfs-site.xml /hadoop-3.2.1/etc/hadoop/hdfs-site-backup.xml
@@ -35,14 +46,3 @@ runcmd:
 packages:
  - openjdk-8-jre
  - pdsh
-
-users:
- - default
- - name: hadoop
-   groups: [ubuntu, adm, google-sudoers]
-   lock_passwd: false
-   shell: /bin/bash
-
-
-package_upgrade: true
-package_update: true
