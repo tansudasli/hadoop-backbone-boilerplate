@@ -36,5 +36,13 @@ packages:
  - openjdk-8-jre
  - pdsh
 
+users:
+ - default
+ - name: hadoop
+   groups: [ubuntu, adm, google-sudoers]
+   lock_passwd: false
+   shell: /bin/bash
+
+
 package_upgrade: true
 package_update: true

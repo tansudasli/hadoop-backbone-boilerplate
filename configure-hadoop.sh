@@ -2,8 +2,18 @@
 
 
 # adds below lines into same file
-echo JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_LOG_DIR=/hdfs/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+
+
+# add hostname and IPs
+index=1
+for i in `gcloud compute addresses list | grep '\n' | awk '{$1=""; print $2}'`
+do
+  echo ${i} machine-${index} | sudo tee -a /etc/hosts
+  let index=${index}+1
+done
 
 # creates as new file
 cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL

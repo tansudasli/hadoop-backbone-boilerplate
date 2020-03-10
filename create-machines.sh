@@ -14,9 +14,6 @@ export HADOOP_ECOSYSTEM=(hdfs hbase zookeeper)
 export DEVICE_IDs=(sdb sdc sdd)                # lsbk in linux-shell shows the device names
 
 
-# export INGESTION_BUCKET_NAME=
-# export AIRFLOW_BUCKET_NAME=.....         # get from gcs buckets and update
-
 # ----------- create static-IPs ---------
 echo "create machines on 1 region, for 3 zones and N additional-disks => streched distributed, low latency b/w zones"
 
@@ -25,7 +22,7 @@ for i in ${!ZONE[@]}
 do
 gcloud compute addresses create ${INSTANCE_NAME[i]} \
    --project=${PROJECT_ID} \
-   --region ${REGION}
+   --region=${REGION}
 done
 
 # ----------- create machines and assign static-IPs ---------
@@ -42,7 +39,7 @@ do
    x=$x" --maintenance-policy=MIGRATE"
    x=$x" --service-account=762922822926-compute@developer.gserviceaccount.com"
    x=$x" --scopes=https://www.googleapis.com/auth/cloud-platform"
-   x=$x" --tags=hadoop, name-node"
+   x=$x" --tags=hadoop,name-node"
    x=$x" --image=ubuntu-1910-eoan-v20200211"
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"

@@ -25,3 +25,5 @@ Create a GCP account and billing account etc..., Then
 2. Run `./preparations.sh` to create project, and to link billing account on GCP
 3. Run `./create-machines.sh` to create machines, and installations w/ `cloud-init.yaml` file on GCP
 4. Run `./configure-hadoop.sh` to configure HDFS
+5. `sudo -u hadoop -i` to switch hadoop user
+6. Check `http://IP:9870` 
