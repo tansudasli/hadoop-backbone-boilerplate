@@ -12,9 +12,9 @@ package_upgrade: true
 package_update: true
 
 # todo: edit disk format and mounting for additional disks!
-# todo: check /var/log/syslog!
+# todo: check logs: cat /var/log/syslog | grep =====
 # todo: check disks mounted w/ lsblk and df -h 
-# todo: check => java -v, ssh -V, pdsh -V, gcloud version
+# todo: check => java -version, ssh -V, pdsh -V, gcloud version
 # todo: other checks => bin/hadoop version
 runcmd:
  - echo "=========download-files========="
@@ -35,6 +35,7 @@ runcmd:
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
  - echo "export HADOOP_HOME=/home/hadoop/hadoop-3.2.1" >> /etc/environment
  - echo PATH="$PATH:/snap/bin" >> /etc/environment
+ - source /etc/environment
  - echo "=========end========="
 
 packages:
