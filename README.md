@@ -24,8 +24,11 @@ Create a GCP account and billing account etc..., Then
     - for local, run `gcloud auth list` to check active gcp account. And `gcloud auth login` if necessary
 2. `git clone https://github.com/tansudasli/hadoop-sandbox.git`, then `cd hadoop-sandbox` folder
 3. Run `./preparations.sh` to create project, and to link billing account on GCP
-4. Run `./create-machines.sh` to create machines, and installations w/ `cloud-init.yaml` file on GCP
+4. Run `./create-machines.sh` to create machines w/ `cloud-init.yaml` file on GCP
 5. ssh to instances on GCP, then `sudo -u hadoop -i` to switch to hadoop user, then `cd hadoop-sandbox` folder
+    - run `./checks.sh` to check results of step 4, then
     - run `./ssh-passwordless.sh` to create and distribute public keys
     - run `./configure-hadoop.sh` to configure HDFS
-6. Check `http://IP:9870` 
+6. Check `http://IP:9870`
+    - or, `$HADOOP_HOME/logs`
+    - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
