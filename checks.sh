@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # switch to hadoop user
-sudo -u hadoop -i
+echo "run w/ hadoop user"
 
 # if cloud-init finished, then check
 x=$(cat /var/log/syslog | grep ===== | wc -l)
-if [ $x -eq 5]
+if [ $x -eq 5 ]
 then
    echo "CHECK"
 
@@ -15,7 +15,7 @@ then
 
    echo $JAVA_HOME && echo $HADOOP_HOME
 
-   ls -l | grep hadoop
+   ls -l ~ | grep hadoop-
 
    df -h | grep hdfs
 else
