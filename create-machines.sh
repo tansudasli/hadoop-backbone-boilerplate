@@ -5,7 +5,7 @@ echo "edit env variables w/ your valid values!"
 export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
 
 export REGION=europe-west4
-export ZONE=(europe-west4-a) #(europe-west4-a europe-west4-b europe-west4-c)
+export ZONE=(europe-west4-a europe-west4-b europe-west4-c)
 export INSTANCE_NAME=(machine-1 machine-2 machine-3)
 
 # device-ids will be in linux = sdb sdc sdd ....
@@ -30,7 +30,7 @@ done
 # creates compute engine w/ N additional-disk in N zone
 for i in ${!ZONE[@]}
 do
-   x="gcloud beta compute --project=${PROJECT_ID} instances create machine-${i+1}"
+   x="gcloud beta compute --project=${PROJECT_ID} instances create machine-$((${i}+1))"
    x=$x" --zone=${ZONE[i]}"
    x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAME[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
    x=$x" --machine-type=custom-4-25600"
@@ -44,7 +44,7 @@ do
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
    x=$x" --boot-disk-type=pd-ssd"
-   x=$x" --boot-disk-device-name=machine-${i+1}"
+   x=$x" --boot-disk-device-name=machine-$((${i}+1))"
    for j in ${!HADOOP_ECOSYSTEM[@]} 
    do 
       x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONE[i]}/diskTypes/pd-ssd,name=${HADOOP_ECOSYSTEM[j]}-disk,device-name=${HADOOP_ECOSYSTEM[j]}" 
