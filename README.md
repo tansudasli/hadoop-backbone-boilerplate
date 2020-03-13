@@ -27,7 +27,11 @@ Create a GCP account and billing account etc..., Then
 4. Run `./create-machines.sh` to create machines w/ `cloud-init.yaml` file on GCP
 5. ssh to instances on GCP, then `sudo -u hadoop -i` to switch to hadoop user, then `cd hadoop-sandbox` folder
     - run `./checks.sh` to check results of step 4, then
-    - run `./ssh-passwordless.sh` to create and distribute public keys
+    - run `./ssh-passwordless.sh` to create public keys, .ssh folder for all machines.
+        - then in nameNode, copy .ssh/id_rsa.pub content into clipboard, and 
+        - ssh to machine-2 manually and add this into .ssh/authorized_keys content
+        - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2
+        - do this to all machines where necessary
     - run `./configure-hadoop.sh` to configure HDFS
 6. Check `http://IP:9870`
     - or, `$HADOOP_HOME/logs`
