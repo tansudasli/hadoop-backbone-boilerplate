@@ -5,7 +5,7 @@ echo "run w/ hadoop user"
 
 # if cloud-init finished, then check
 x=$(cat /var/log/syslog | grep ===== | wc -l)
-if [ $x -eq 5 ]
+if [ $x -eq 6 ]
 then
    echo "CHECK"
 

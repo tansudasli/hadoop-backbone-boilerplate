@@ -17,11 +17,12 @@ package_update: true
 # todo: check => java -version, ssh -V, pdsh -V, gcloud version
 # todo: other checks => bin/hadoop version
 runcmd:
+ - echo "=========download-repository========="
+ - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-sandbox.git
  - echo "=========download-files========="
  - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz
  - wget "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /zookeeper-3.4.14.tar.gz
  - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hbase/2.2.3/hbase-2.2.3-bin.tar.gz" -O /hbase-2.2.3-bin.tar.gz
- - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-sandbox.git
  - echo "=========preparare-additional-disks-hdfs========="
  - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
  - sudo mkdir -p /hdfs
