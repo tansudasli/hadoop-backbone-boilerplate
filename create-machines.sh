@@ -96,7 +96,7 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allo
 # add hostname and internal-IPs
 # public-IP creates bindingException error
 index=1
-for i in `gcloud compute instances list | grep '\n' | awk '{$5=""; print $9}'`
+for i in `gcloud compute instances list | grep '\n' | awk '{$5=""; print $8}'`
 do
   echo ${i} machine-${index} | sudo tee -a /etc/hosts
   let index=${index}+1
