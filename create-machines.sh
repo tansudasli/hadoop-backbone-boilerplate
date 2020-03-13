@@ -40,7 +40,7 @@ do
    x=$x" --service-account=762922822926-compute@developer.gserviceaccount.com"
    x=$x" --scopes=https://www.googleapis.com/auth/cloud-platform"
    x=$x" --tags=hadoop,name-node"
-   x=$x" --image=ubuntu-1910-eoan-v20200211"
+   x=$x" --image=ubuntu-1910-eoan-v20200311"
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
    x=$x" --boot-disk-type=pd-ssd"
