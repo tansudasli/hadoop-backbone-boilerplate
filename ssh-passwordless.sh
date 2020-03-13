@@ -3,6 +3,16 @@
 
 # todo: ls -la ~/.ssh
 
+# add hostname and internal-IPs
+# public-IP creates bindingException error
+index=1
+for i in `gcloud compute instances list | grep '\n' | awk '{$5=""; print $8}'`
+do
+  echo ${i} machine-${index} | sudo tee -a /etc/hosts
+  let index=${index}+1
+done
+
+
 # create ssh-keys
 ssh-keygen -t rsa -P '' -f /home/hadoop/.ssh/id_rsa
 cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys
