@@ -40,7 +40,9 @@ Create a GCP account and billing account etc..., Then
 
 <br>on nameNode<br>
 
-6. run `./configure-hadoop.sh` on nameNode to configure HDFS in distributed mode, then distributes conf files to other workers
+6. run `./configure-hadoop.sh` to configure HDFS in distributed mode. 
+    - Distributes conf files to other workers automatically
+    - Formats HDFS for first time usage
 
 <br>on Local<br>
 
