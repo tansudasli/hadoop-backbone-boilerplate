@@ -50,3 +50,4 @@ Create a GCP account and billing account etc..., Then
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
+    - or, `sudo ss -atpu` sshd listening and connected status
