@@ -13,7 +13,7 @@ then
    java -version &&  ssh -V &&  pdsh -V && gcloud version
    ls / | grep tar.gz
 
-   echo $JAVA_HOME && echo $HADOOP_HOME
+   echo $JAVA_HOME && echo $HADOOP_HOME && echo $PDSH_RCMD_TYPE
 
    ls -l ~ | grep hadoop-
 
