@@ -18,6 +18,8 @@ then
    ls -l ~ | grep hadoop-
 
    df -h | grep hdfs
+
+   cat /etc/hosts | grep machine-
 else
    echo "TRY AGAIN"
 fi

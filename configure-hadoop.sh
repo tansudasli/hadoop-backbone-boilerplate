@@ -17,14 +17,6 @@ cp ${HADOOP_HOME}/etc/hadoop/core-site.xml ${HADOOP_HOME}/etc/hadoop/core-site-b
 cp ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml ${HADOOP_HOME}/etc/hadoop/hdfs-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/workers ${HADOOP_HOME}/etc/hadoop/workers-backup
 
-# add hostname and internal-IPs
-# public-IP creates bindingException error
-index=1
-for i in `gcloud compute instances list | grep '\n' | awk '{$5=""; print $9}'`
-do
-  echo ${i} machine-${index} | sudo tee -a /etc/hosts
-  let index=${index}+1
-done
 
 # creates as new file
 # public-IP creates bindingException error
