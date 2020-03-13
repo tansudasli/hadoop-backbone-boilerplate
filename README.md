@@ -34,8 +34,8 @@ Create a GCP account and billing account etc..., Then
     - run `./checks.sh` to check results of step 4, then
     - run `./ssh-passwordless.sh` to create public keys, .ssh folder for all machines.
         - then in nameNode, copy .ssh/id_rsa.pub content into clipboard, and 
-        - ssh to machine-2 manually and add this into .ssh/authorized_keys content
-        - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2
+        - ssh to machine-2 manually and _add_ this into `nano .ssh/authorized_keys` content
+        - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2 and w/ `ssh hadoop@machine-3` to machine-3
         - do this to all machines where necessary
 
 <br>on nameNode<br>
