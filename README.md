@@ -32,7 +32,7 @@ Create a GCP account and billing account etc..., Then
         - ssh to machine-2 manually and add this into .ssh/authorized_keys content
         - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2
         - do this to all machines where necessary
-    - run `./configure-hadoop.sh` to configure HDFS
+    - run `./configure-hadoop.sh` to configure HDFS in distributed mode, then distributes conf files to other workers
 6. Check `http://IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
