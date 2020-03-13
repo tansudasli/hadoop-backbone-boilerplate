@@ -49,3 +49,4 @@ Create a GCP account and billing account etc..., Then
 7. Check `http://IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
+    - or, `netstat -a -t --numeric-ports -p` for binding exceptions
