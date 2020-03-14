@@ -8,7 +8,7 @@ echo "run on nameNode only"
 export INSTANCE_NAMES=(machine-1 machine-2 machine-3)
 export SECONDARY_NAME_NODE=machine-2
 export WORKER_NODES=(machine-2 machine-3)
-export HDFS_PATH=(hdfs)
+export HDFS_PATH=(/hdfs)
 
 # set some env values
 # all machines(master, secindaryMaster, workers...)
@@ -29,7 +29,7 @@ cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://${INSTANCE_NAMES[1]}:9000</value>
+        <value>hdfs://${INSTANCE_NAMES[0]}:9000</value>
     </property>
 </configuration>
 EOL
@@ -41,12 +41,12 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 <!--master-->
     <property>
             <name>dfs.namenode.name.dir</name>
-            <value>${HDFS}/name</value>
+            <value>${HDFS_PATH[0]}/name</value>
     </property>
 
     <property>
             <name>dfs.namenode.edits.dir</name>
-            <value>${HDFS}/logs</value>
+            <value>${HDFS_PATH[0]}/logs</value>
     </property>
 
     <property>
@@ -62,13 +62,13 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 <!--secondaryMaster-->
     <property>
             <name>dfs.namenode.checkpoint.dir</name>
-            <value>${HDFS}/secondaryName</value>
+            <value>${HDFS_PATH[0]}/secondaryName</value>
     </property>    
 
 <!--worker-->
     <property>
             <name>dfs.datanode.data.dir</name>
-            <value>${HDFS}/data</value>
+            <value>${HDFS_PATH[0]}/data</value>
     </property>
 </configuration>
 EOL

@@ -30,6 +30,7 @@ runcmd:
  - sudo mount -o discard,defaults /dev/sdb /hdfs
  - sudo cp /etc/fstab /etc/fstab.backup
  - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+ - sudo chown -R hadoop:hadoop /hdfs
  - echo "=========extract-hadoop-files========="
  - sudo -u hadoop -i tar -xzf /hadoop-3.2.1.tar.gz
  - echo "=========bug-fix========="
@@ -42,4 +43,5 @@ runcmd:
 
 packages:
  - openjdk-8-jre
+ - openjdk-8-jdk-headless
  - pdsh
