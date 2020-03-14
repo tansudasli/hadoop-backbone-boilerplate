@@ -6,7 +6,7 @@ export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
 
 export REGION=europe-west4
 export ZONE=(europe-west4-a europe-west4-b europe-west4-c)
-export INSTANCE_NAME=(machine-1 machine-2 machine-3)
+export INSTANCE_NAMES=(machine-1 machine-2 machine-3)
 
 # device-ids will be in linux = sdb sdc sdd ....
 # todo: so check cloud-init.yaml file for disk format/mount steps!
@@ -20,7 +20,7 @@ echo "create machines on 1 region, for 3 zones and N additional-disks => streche
 # creates static-regional IPs, then assigns to compute-engines
 for i in ${!ZONE[@]}
 do
-gcloud compute addresses create ${INSTANCE_NAME[i]} \
+gcloud compute addresses create ${INSTANCE_NAMES[i]} \
    --project=${PROJECT_ID} \
    --region=${REGION}
 done
@@ -32,7 +32,7 @@ for i in ${!ZONE[@]}
 do
    x="gcloud beta compute --project=${PROJECT_ID} instances create machine-$((${i}+1))"
    x=$x" --zone=${ZONE[i]}"
-   x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAME[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
+   x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
    x=$x" --machine-type=custom-4-25600"
    x=$x" --subnet=default"
    x=$x" --network-tier=PREMIUM"
@@ -96,5 +96,5 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allo
 
 
 # then connect w/ ssh
-# gcloud compute --project $PROJECT_ID ssh --zone $ZONE_NAME $INSTANCE_NAME
+# gcloud compute --project $PROJECT_ID ssh --zone $ZONE_NAME $INSTANCE_NAMES
 
