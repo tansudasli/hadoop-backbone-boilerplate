@@ -88,7 +88,7 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allo
     --priority=1000 \
     --network=default \
     --action=ALLOW \
-    --rules=tcp:9870 \
+    --rules=tcp:9870,9880 \
     --source-ranges=0.0.0.0/0 \
     --target-tags=name-node
 
