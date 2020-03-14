@@ -37,7 +37,7 @@ Create a GCP account and billing account etc..., Then
         - ssh to machine-2 *manually* and _add_ this into `nano .ssh/authorized_keys` content
         - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2 and w/ `ssh hadoop@machine-3` to machine-3
 
-<br>After this, machine-1 (which has nameNode) can ssh to machine-2 and machine-3 wothout password!
+<br>After this, machine-1 (which has nameNode) can ssh to machine-2 and machine-3 without password!
 
 <br>on nameNode<br>
 
