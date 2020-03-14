@@ -32,21 +32,22 @@ Create a GCP account and billing account etc..., Then
 
 5. ssh to instances on GCP, then `sudo -u hadoop -i` to switch to hadoop user, then `cd hadoop-sandbox` folder
     - run `./checks.sh` to check results of step 4, then
-    - run `./ssh-passwordless.sh` to create public keys, .ssh folder for all machines.
+    - run `./ssh-passwordless.sh` to create public keys, and _.ssh_ folder for all machines.
         - then in nameNode, copy .ssh/id_rsa.pub content into clipboard, and 
-        - ssh to machine-2 manually and _add_ this into `nano .ssh/authorized_keys` content
+        - ssh to machine-2 *manually* and _add_ this into `nano .ssh/authorized_keys` content
         - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2 and w/ `ssh hadoop@machine-3` to machine-3
-        - do this to all machines where necessary
+
+<br>After this, machine-1 (which has nameNode) can ssh to machine-2 and machine-3 wothout password!
 
 <br>on nameNode<br>
 
-6. run `./configure-hadoop.sh` to configure HDFS in distributed mode. 
+6. run `./configure-hadoop.sh` to configure _HDFS_ in distributed mode. 
     - Distributes conf files to other workers automatically
     - Formats HDFS for first time usage
 
 <br>on Local<br>
 
-7. Check `http://IP:9870`
+7. Check `http://machine-1-IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
