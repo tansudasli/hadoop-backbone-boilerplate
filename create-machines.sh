@@ -2,6 +2,8 @@
 
 echo "edit env variables w/ your valid values!"
 
+# create machines on 1 region, for 3 zones and N additional-disks => streched distributed, low latency b/w zones
+
 export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
 
 export REGION=europe-west4
@@ -15,8 +17,6 @@ export DEVICE_IDs=(sdb sdc sdd)                # lsbk in linux-shell shows the d
 
 
 # ----------- create static-IPs ---------
-echo "create machines on 1 region, for 3 zones and N additional-disks => streched distributed, low latency b/w zones"
-
 # creates static-regional IPs, then assigns to compute-engines
 for i in ${!ZONE[@]}
 do
@@ -88,7 +88,7 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allo
     --priority=1000 \
     --network=default \
     --action=ALLOW \
-    --rules=tcp:9870,9880 \
+    --rules=tcp:9870,tcp:9880 \
     --source-ranges=0.0.0.0/0 \
     --target-tags=name-node
 
