@@ -1,15 +1,13 @@
 # hadoop-sandbox
 
-Distributed installation of hadoop ecosystem on GCP IaaS.
+(stretched) Distributed installation of hadoop ecosystem on GCP IaaS.
 
-- [ ] Apache Hadoop (hdfs only)
-    - requires java8
-- [ ] Apache Hbase 
-    - requires java8, hdfs, Zookeeper
-- [ ] Apache Zookeeper (central)
-    - requires java8
-- [ ] Apache Kafka
-    - requires java8, Zookeeper
+- [x] Apache Hadoop (hdfs only): java8
+- [ ] Apache Hadoop (yarn, mapreduce)
+- [ ] Apache Zookeeper: java8
+- [ ] Apache Hbase: java8, hdfs, Zookeeper
+- [ ] Apache Spark: java8, Zookeeper ???
+- [ ] Apache Kafka: java8, Zookeeper
 
 
 ## High Level Architecture - POC
@@ -56,3 +54,7 @@ Create a GCP account and billing account etc..., Then
 #### About Possible Errors
 
 - to create and delete machine-x many times, you may need to clean `rm -r .ssh/` on your local *to eliminate ssh connection problems*
+
+#### More about production-readiness 
+
+-[ ] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
