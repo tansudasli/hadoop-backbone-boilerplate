@@ -11,7 +11,7 @@ then
 
    sudo cat /etc/passwd | grep hadoop
    java -version &&  ssh -V &&  pdsh -V && gcloud version
-   ls / | grep tar.gz
+   ls / | grep t*gz
 
    echo $JAVA_HOME && echo $HADOOP_HOME && echo "rcmd default="$PDSH_RCMD_TYPE
 
