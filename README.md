@@ -57,4 +57,7 @@ Create a GCP account and billing account etc..., Then
 
 #### More about production-readiness 
 
--[ ] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
+- [ ] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
+- [ ] JVM optimizations
+- [ ] Better disk architecture (local ssd disks etc.)
+- [ ] More hadoop security (kerberos etc.)
