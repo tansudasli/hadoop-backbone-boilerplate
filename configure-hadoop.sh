@@ -1,4 +1,6 @@
 echo "run on nameNode only"
+echo "backups hadoop conf. files. then add new lines"
+echo "then, formats hdfs namenode"
 
 # todo: check => ${HADOOP_HOME}/bin/hadoop version
 # todo: check ls ${HADOOP_HOME}/etc/hadoop/ | grep backup
