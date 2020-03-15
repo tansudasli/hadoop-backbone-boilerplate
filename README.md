@@ -61,3 +61,6 @@ Create a GCP account and billing account etc..., Then
 - [ ] JVM optimizations
 - [ ] Better disk architecture (local ssd disks etc.)
 - [ ] More hadoop security (kerberos etc.)
+- [ ] More network layer security (diff. vlan, subnets etc.)
+
+and consider _free_ cloudera distribution, for better hadoop management
