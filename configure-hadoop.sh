@@ -16,7 +16,7 @@ export HDFS_PATH=(/hdfs)
 # all machines(master, secindaryMaster, workers...)
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-# echo export HADOOP_LOG_DIR=/${HDFS}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_LOG_DIR=/${HDFS}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 
 # backup conf. files touched
 cp ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh ${HADOOP_HOME}/etc/hadoop/hadoop-env-backup.sh
