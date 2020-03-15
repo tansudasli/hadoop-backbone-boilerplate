@@ -13,7 +13,7 @@ then
    java -version &&  ssh -V &&  pdsh -V && gcloud version
    ls / | grep t*gz
 
-   echo $JAVA_HOME && echo $HADOOP_HOME && echo "rcmd default="$PDSH_RCMD_TYPE
+   echo "JAVA_HOME="$JAVA_HOME && echo "HADOOP_HOME="$HADOOP_HOME && echo "rcmd default="$PDSH_RCMD_TYPE
 
    ls -l ~ | grep hadoop-
 
@@ -21,6 +21,6 @@ then
 
    cat /etc/hosts | grep machine-
 else
-   echo "TRY AGAIN"
+   echo "WAIT and TRY AGAIN"
 fi
 
