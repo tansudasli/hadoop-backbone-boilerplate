@@ -64,8 +64,9 @@ Create a GCP account and billing account etc..., Then
 - [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
 - [ ] JVM optimizations
 - [x] Better disk architecture (local ssd disks etc.)
-- [ ] Backups to network attached disks
+- [ ] Backup to network attached disks (hdfs full image ..)
 - [ ] More hadoop security (kerberos etc.)
 - [ ] More network layer security (diff. subnets etc.)
+- [ ] Add rsync to crontab to sync conf files
 
 and consider _free_ cloudera distribution, for better hadoop management
