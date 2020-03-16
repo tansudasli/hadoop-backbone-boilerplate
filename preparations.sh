@@ -2,13 +2,14 @@
 
 echo "edit env variables w/ your valid values!"
 
-export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
-
+# todo: must be unique - at gcp level
+export PROJECT_ID=hadoop-sandbox-270208     
 
 
 # ----------- preperations ---------
-echo "create gcp account and install gcp cli on local"
-echo "check active gcp account"
+echo "First, create a gcp account and install gcp cli on your local"
+echo "Then, check active gcp account"
+echo "Then, run this script to create a project on gcp"
 
 gcloud projects create ${PROJECT_ID} \
                        --name 'hadoop-cluster'
