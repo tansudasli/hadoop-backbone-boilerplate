@@ -3,17 +3,14 @@
 source hadoop.env
 
 
-
 # ----------- create static-IPs ---------
 
 # creates static-regional IPs, then assigns to compute-engines
 # todo: normally only web interface servers need static-IP
 serverCount=${#INSTANCE_NAMES[@]}
-echo "serverCount="$serverCount
 
-for i in $(seq 0 1 $$(($serverCount-1)))
+for i in $(seq 0 1 $(($serverCount-1)))
 do
-echo i=$i, INSTANCE_NAME=${INSTANCE_NAMES[i]}
 
    gcloud compute addresses create ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION}
 done
@@ -22,9 +19,8 @@ done
 
 # deletes data disks! keep in mind 
 # creates compute engine w/ N additional-disk in N zone
-for i in $(seq 0 1 $$(($serverCount-1)))
+for i in $(seq 0 1 $(($serverCount-1)))
 do
-echo i=$i, INSTANCE_NAME=${INSTANCE_NAMES[i]}
 
    x="gcloud beta compute --project=${PROJECT_ID} instances create ${INSTANCE_NAMES[i]}"
    x=$x" --zone=${ZONES[i]}"
