@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source hadoop.env
+source .env
 
 # ----------- preperations ---------
 
