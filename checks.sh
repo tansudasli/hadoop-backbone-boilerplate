@@ -20,6 +20,8 @@ then
    df -h | grep hdfs
 
    cat /etc/hosts | grep machine-
+
+   echo "if env. vars are empty, run source /etc/environment manually !"
 else
    echo "WAIT and TRY AGAIN"
 fi
