@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# switch to hadoop user
 echo "run w/ hadoop user"
 
 # if cloud-init finished, then check
