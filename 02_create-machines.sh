@@ -40,7 +40,7 @@ do
    x=$x" --boot-disk-device-name=${INSTANCE_NAMES[i]}"
    for j in $(seq 1 1 $ADDITIONAL_DISK_COUNT)
    do 
-      x=$x" --local-ssd=interface=NVME" 
+      x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONES[i]}/diskTypes/pd-ssd,name=${INSTANCE_NAMES[i]}-disk-${j},device-name=${ADDITIONAL_DISKS[j]}" 
    done
    x=$x" --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
    x=$x" --metadata-from-file user-data=./cloud-init.yaml"
