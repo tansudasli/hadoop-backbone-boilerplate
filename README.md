@@ -51,8 +51,9 @@ Create a GCP account and billing account etc..., Then
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
     - or, `sudo ss -atpu` sshd listening and connected status
 
-#### About Possible Errors
+#### About Possible Errors & Other staffs
 
+- to limit server count, check `.env` file
 - to create and delete machine-x many times, you may need to clean `rm -r .ssh/` on your local *to eliminate ssh connection problems*
 
 #### More about production-readiness 
