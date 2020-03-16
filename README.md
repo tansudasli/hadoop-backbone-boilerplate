@@ -59,7 +59,7 @@ Create a GCP account and billing account etc..., Then
 
 - [x] More optimized and parametric scripts (env files etc.)
 - [ ] Use less static-IPs (just for masters etc.)
-- [ ] Dynamic machine-Types regarding to purposes
+- [ ] Dynamic machine-Types regarding to purposes (diff. CPU and RAM configs)
 - [ ] Dynamic port management (open for only masters)
 - [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
 - [ ] JVM optimizations
