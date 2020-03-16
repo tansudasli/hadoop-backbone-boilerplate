@@ -1,8 +1,8 @@
 # hadoop-sandbox
 
-(stretched) Distributed installation of hadoop ecosystem on GCP IaaS.
+Fully Distributed installation of hadoop ecosystem on GCP IaaS.
 
-- [x] Apache Hadoop (hdfs only): java8
+- [x] Apache Hadoop (hdfs): java8
 - [ ] Apache Hadoop (yarn, mapreduce)
 - [ ] Apache Zookeeper: java8
 - [ ] Apache Hbase: java8, hdfs, Zookeeper
@@ -57,10 +57,15 @@ Create a GCP account and billing account etc..., Then
 
 #### More about production-readiness 
 
-- [ ] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
+- [x] More optimized and parametric scripts (env files etc.)
+- [ ] Use less static-IPs (just for masters etc.)
+- [ ] Dynamic machine-Types regarding to purposes
+- [ ] Dynamic port management (open for only masters)
+- [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
 - [ ] JVM optimizations
-- [ ] Better disk architecture (local ssd disks etc.)
+- [x] Better disk architecture (local ssd disks etc.)
+- [ ] Backups to network attached disks
 - [ ] More hadoop security (kerberos etc.)
-- [ ] More network layer security (diff. vlan, subnets etc.)
+- [ ] More network layer security (diff. subnets etc.)
 
 and consider _free_ cloudera distribution, for better hadoop management

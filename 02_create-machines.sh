@@ -1,14 +1,7 @@
 #!/usr/bin/env bash
 
-echo "edit env variables w/ your valid values!"
+source hadoop.env
 
-# create machines on 1 region, for 3 zones and N additional-disks => streched distributed, low latency b/w zones
-
-export PROJECT_ID=hadoop-sandbox-270208     # must be unique - gcp level
-
-export REGION=europe-west4
-export ZONE=(europe-west4-a europe-west4-b europe-west4-c)
-export INSTANCE_NAMES=(machine-1 machine-2 machine-3)
 
 # device-ids will be in linux = sdb sdc sdd ....
 # todo: so check cloud-init.yaml file for disk format/mount steps!
@@ -17,21 +10,31 @@ export DEVICE_IDs=(sdb sdc sdd)                # lsbk in linux-shell shows the d
 
 
 # ----------- create static-IPs ---------
+
 # creates static-regional IPs, then assigns to compute-engines
-for i in ${!ZONE[@]}
+# todo: normally only web interface servers need static-IP
+serverCount=${#INSTANCE_NAMES[@]}
+echo "serverCount="$serverCount
+
+for i in $(seq 0 1 7)
 do
-gcloud compute addresses create ${INSTANCE_NAMES[i]} \
-   --project=${PROJECT_ID} \
-   --region=${REGION}
+echo i=$i
+echo ${INSTANCE_NAMES[i]}
+
+   gcloud compute addresses create ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION}
 done
 
 # ----------- create machines and assign static-IPs ---------
-# deletes data disk! keep in mind 
+
+# deletes data disks! keep in mind 
 # creates compute engine w/ N additional-disk in N zone
-for i in ${!ZONE[@]}
+for i in $(seq 0 1 7)
 do
-   x="gcloud beta compute --project=${PROJECT_ID} instances create machine-$((${i}+1))"
-   x=$x" --zone=${ZONE[i]}"
+echo i=$i
+echo ${INSTANCE_NAMES[i]}
+
+   x="gcloud beta compute --project=${PROJECT_ID} instances create ${INSTANCE_NAMES[i]}"
+   x=$x" --zone=${ZONES[i]}"
    x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
    x=$x" --machine-type=custom-4-25600"
    x=$x" --subnet=default"
@@ -39,7 +42,7 @@ do
    x=$x" --maintenance-policy=MIGRATE"
    x=$x" --service-account=762922822926-compute@developer.gserviceaccount.com"
    x=$x" --scopes=https://www.googleapis.com/auth/cloud-platform"
-   x=$x" --tags=hadoop,name-node"
+   x=$x" --tags=${TAGS[i]}"
    x=$x" --image=ubuntu-1910-eoan-v20200311"
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
@@ -47,7 +50,7 @@ do
    x=$x" --boot-disk-device-name=machine-$((${i}+1))"
    for j in ${!HADOOP_ECOSYSTEM[@]} 
    do 
-      x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONE[i]}/diskTypes/pd-ssd,name=${HADOOP_ECOSYSTEM[j]}-disk,device-name=${HADOOP_ECOSYSTEM[j]}" 
+      x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/hadoop-sandbox-270208/zones/${ZONES[i]}/diskTypes/pd-ssd,name=${HADOOP_ECOSYSTEM[j]}-disk,device-name=${HADOOP_ECOSYSTEM[j]}" 
    done
    x=$x" --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
    x=$x" --metadata-from-file user-data=./cloud-init.yaml"
@@ -90,7 +93,7 @@ gcloud compute --project=hadoop-sandbox-270208 firewall-rules create hadoop-allo
     --action=ALLOW \
     --rules=tcp:9870,tcp:9880 \
     --source-ranges=0.0.0.0/0 \
-    --target-tags=name-node
+    --target-tags=hadoop
 
 
 
