@@ -26,6 +26,13 @@ runcmd:
  - wget "https://ftp.itu.edu.tr/Mirror/Apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop3.2.tgz" -O /spark-3.0.0.tgz
  - echo "=========extract-hadoop-files========="
  - sudo -u hadoop -i tar -xzf /hadoop-3.2.1.tar.gz
+ - echo "=========add-additional-disks========="	
+ - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
+ - sudo mkdir -p /hdfs	
+ - sudo mount -o discard,defaults /dev/sdb /hdfs	
+ - sudo cp /etc/fstab /etc/fstab.backup	
+ - echo UUID=$(sudo blkid -s UUID -o value /dev/sdb) /hdfs ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab	
+ - sudo chown -R hadoop:hadoop /hdfs
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
