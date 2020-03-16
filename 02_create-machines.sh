@@ -11,7 +11,7 @@ source hadoop.env
 serverCount=${#INSTANCE_NAMES[@]}
 echo "serverCount="$serverCount
 
-for i in $(seq 0 1 $$($serverCount-1))
+for i in $(seq 0 1 $$(($serverCount-1)))
 do
 echo i=$i, INSTANCE_NAME=${INSTANCE_NAMES[i]}
 
@@ -22,7 +22,7 @@ done
 
 # deletes data disks! keep in mind 
 # creates compute engine w/ N additional-disk in N zone
-for i in $(seq 0 1 $$($serverCount-1))
+for i in $(seq 0 1 $$(($serverCount-1)))
 do
 echo i=$i, INSTANCE_NAME=${INSTANCE_NAMES[i]}
 
