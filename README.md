@@ -10,7 +10,7 @@ Fully Distributed installation of hadoop ecosystem on GCP IaaS.
 - [ ] Apache Kafka: java8, Zookeeper
 
 
-## High Level Architecture - POC
+## High Level Architecture
    
 ![Image](doc/hadoop-ecosystem-architecture.png)
 
