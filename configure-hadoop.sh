@@ -1,3 +1,6 @@
+
+source .env
+
 echo "run on nameNode only"
 echo "backups hadoop conf. files. then add new lines"
 echo "then, formats hdfs namenode"
