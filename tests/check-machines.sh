@@ -16,7 +16,7 @@ then
 
    ls -l ~ | grep hadoop-
 
-   df -h | grep hdfs
+   df -h | grep data
 
    cat /etc/hosts | grep machine-
 
