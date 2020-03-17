@@ -1,25 +1,23 @@
 
 source .env
 
+# contains hadoop specific env variables !
+
 echo "run on nameNode only"
 echo "backups hadoop conf. files. then add new lines"
-echo "then, formats hdfs namenode"
+echo "then, formats hdfs namenode for the first time"
 
-# todo: check => ${HADOOP_HOME}/bin/hadoop version
-# todo: check ls ${HADOOP_HOME}/etc/hadoop/ | grep backup
+# install hadoop
+echo "extract hadoop files"
+tar -xzf /hadoop-3.2.1.tar.gz
 
-# hadoop arch. topology - streched distributed
-# this can be changed to fully distributed easiliy
-export INSTANCE_NAMES=(machine-1 machine-2 machine-3)
-export SECONDARY_NAME_NODE=machine-2
-export WORKER_NODES=(machine-2 machine-3)
-export HDFS_PATH=(/hdfs)
+# hadoop arch. topology - fully distributed
+export NAME_NODE=${HADOOP_INSTANCE_NAMES[0]}
+export SECONDARY_NAME_NODE=${HADOOP_INSTANCE_NAMES[1]}
+export WORKER_NODES=(${HADOOP_INSTANCE_NAMES[2]} ${HADOOP_INSTANCE_NAMES[3]})
+export HDFS_PATH=(/data-1)
 
-# set some env values
-# all machines(master, secindaryMaster, workers...)
-echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo export HADOOP_LOG_DIR=/${HDFS}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo "configurations of HDFS"
 
 # backup conf. files touched
 cp ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh ${HADOOP_HOME}/etc/hadoop/hadoop-env-backup.sh
@@ -28,13 +26,18 @@ cp ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml ${HADOOP_HOME}/etc/hadoop/hdfs-site-b
 cp ${HADOOP_HOME}/etc/hadoop/workers ${HADOOP_HOME}/etc/hadoop/workers-backup
 
 
+echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_LOG_DIR=${HDFS}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+
+
 # creates as new file
 # public-IP creates bindingException error
 cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://${INSTANCE_NAMES[0]}:9000</value>
+        <value>hdfs://${NAME_NODE}:9000</value>
     </property>
 </configuration>
 EOL
@@ -79,19 +82,20 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 EOL
 
 # creates as new file
-# only dataNodes' machines
+# put only dataNodes' machines
 cat > ${HADOOP_HOME}/etc/hadoop/workers <<EOL
 ${WORKER_NODES[0]}
 ${WORKER_NODES[1]}
 EOL
 
-# distribute conf. files to workers
-for i in ${!WORKER_NODES[@]}
+echo "distribute conf. files to all except master"
+# todo: can be replaced w/ rsync
+for i in $(seq 1 1 $((${#HADOOP_INSTANCE_NAMES[@]}-1))) 
 do
 
-  scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${WORKER_NODES[i]}:${HADOOP_HOME}/etc/hadoop/
+  scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${HADOOP_INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
 done
 
 
-# format for the first time
+echo "format HDFS for the first time"
 ${HADOOP_HOME}/bin/hdfs namenode -format
