@@ -20,7 +20,8 @@ then
 
    cat /etc/hosts | grep machine-
 
-   echo "if env. vars are empty, run source /etc/environment manually !"
+   echo "\nif env. vars are empty, run source /etc/environment manually !"
+   echo "Now run 02a-ssh-passwordless.sh in master !"
 else
    echo "WAIT and TRY AGAIN"
 fi
