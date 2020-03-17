@@ -20,9 +20,9 @@ runcmd:
  - echo "=========download-repository========="
  - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-backbone-boilerplate
  - echo "=========download-files========="
- - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz
+ - wget "https://ftp.itu.edu.tr/Mirror/Apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz
  - wget "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /zookeeper-3.4.14.tar.gz
- - wget "http://kozyatagi.mirror.guzel.net.tr/apache/hbase/2.2.3/hbase-2.2.3-bin.tar.gz" -O /hbase-2.2.3-bin.tar.gz
+ - wget "https://ftp.itu.edu.tr/Mirror/Apache/hbase/2.2.3/hbase-2.2.3-bin.tar.gz" -O /hbase-2.2.3-bin.tar.gz
  - wget "https://ftp.itu.edu.tr/Mirror/Apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop3.2.tgz" -O /spark-3.0.0.tgz
  - echo "=========add-additional-disk-1========="
  - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
