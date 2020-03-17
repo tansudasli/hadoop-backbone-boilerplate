@@ -1,11 +1,14 @@
 
-# switch to hadoop user!
+source .env
+
+echo "switch to hadoop user!"
 
 # todo: ls -la ~/.ssh
 
 # add hostname and internal-IPs
 # public-IP creates bindingException error
 echo "Add private-IPs into /etc/hosts file"
+
 for i in `gcloud compute instances list --project=${PROJECT_ID}| awk 'NR>1 {print $1 "#" $5}'`
 do
   echo ${i} | tr '#' ' '| sudo tee -a /etc/hosts
