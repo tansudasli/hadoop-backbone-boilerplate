@@ -6,11 +6,10 @@
 # add hostname and internal-IPs
 # public-IP creates bindingException error
 echo "Add private-IPs into /etc/hosts file"
-index=1
-for i in `gcloud compute instances list | awk '{print $5}' | awk 'NR>1'`
+for i in `gcloud compute instances list --project=${PROJECT_ID}| awk 'NR>1 {print $1 "#" $5}'`
 do
-  echo ${i} machine-${index} | sudo tee -a /etc/hosts
-  let index=${index}+1
+  echo ${i} | tr '#' ' '| sudo tee -a /etc/hosts
+
 done
 
 
