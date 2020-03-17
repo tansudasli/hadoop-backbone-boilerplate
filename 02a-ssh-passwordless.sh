@@ -7,7 +7,7 @@
 # public-IP creates bindingException error
 echo "Add private-IPs into /etc/hosts file"
 index=1
-for i in `gcloud compute instances list | grep '\n' | awk '{$5=""; print $8}'`
+for i in `gcloud compute instances list | awk '{print $5}' | awk 'NR>1'`
 do
   echo ${i} machine-${index} | sudo tee -a /etc/hosts
   let index=${index}+1
