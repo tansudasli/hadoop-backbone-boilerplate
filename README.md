@@ -37,5 +37,6 @@ Generally,
 - [ ] More network layer security (diff. subnets etc.)
 - [ ] Add rsync to crontab to sync conf files
 
-and consider _free_ cloudera distribution, for better hadoop management
-and ansible for on-premise configuration management and provisioning
+and consider 
+- _free_ cloudera distribution for better hadoop management,
+- and ansible for on-premise configuration management and provisioning
