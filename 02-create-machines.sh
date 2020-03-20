@@ -34,7 +34,7 @@ do
    x=$x" --scopes=https://www.googleapis.com/auth/cloud-platform"
    x=$x" --tags=${TAGS[i]}"
    x=$x" --labels=${LABELS[i]}"
-   x=$x" --image=ubuntu-1910-eoan-v20200311"
+   x=$x" --image=${IMAGE}"
    x=$x" --image-project=ubuntu-os-cloud"
    x=$x" --boot-disk-size=500GB"
    x=$x" --boot-disk-type=pd-ssd"
