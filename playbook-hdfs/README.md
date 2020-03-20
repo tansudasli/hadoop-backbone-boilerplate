@@ -7,25 +7,18 @@
 
 ### How to Start
 
-Create a GCP account and billing account etc..., Then
-
 <br>on Local or on gloud-shell<br>
 
-1. Configure your _local_ for gcloud CLI or use _gcloud-shell_ in gcp console, after cloning the git-reporitory.
-    - for local, run `gcloud auth list` to check active gcp account. And `gcloud auth login` if necessary
-2. `git clone https://github.com/tansudasli/hadoop-backbone-boilerplate.git`, 
-    - Then `cd hadoop-backbone-boilerplate/playbook-hdfs`
-    - Edit .env file, and update variables w/ your values ( service account, project, region etc...)
-3. Run `./preparations.sh` to create project, and to link billing account on GCP
-4. Run `./create-machines.sh` to create machines w/ `cloud-init.yaml` file on GCP
+1. `cd hadoop-backbone-boilerplate/playbook-hdfs`
+2. Run `./02-create-machines.sh` to create machines. Uses `cloud-init.yaml` file
 
 <br>on allMachines<br>
 
-5. ssh to instances on GCP, 
+3. ssh to instances on GCP, 
     - then `sudo -u hadoop -i` to switch to hadoop user, 
         - then `cd ~/hadoop-backbone-boilerplate/playbook-hdfs` folder
         - run `./checks.sh` to check results of step 4, then
-        - run `./ssh-passwordless.sh` to create public keys, and _.ssh_ folder for *all machines*.
+        - run `./02a-ssh-passwordless.sh` to create public keys, and _.ssh_ folder for *all machines*.
             1. then in name-node, copy .ssh/id_rsa.pub content into clipboard, and 
             2. ssh to secondary-name-node *manually* and _add_ this into `nano .ssh/authorized_keys` content
             3. then conect w/ `ssh hadoop@secondary-name-node` from name-node
@@ -37,15 +30,15 @@ After this, master can _ssh to other machines_ w/o password! Use `hadoop-backbon
 
 <br>on nameNode<br>
 
-6. run `./configure-hadoop.sh` to configure _HDFS_ in distributed mode. 
+4. run `./configure-hadoop.sh` to configure _HDFS_ in distributed mode. 
     - Distributes conf files to other workers automatically
     - Formats HDFS on nameNode for the first time usage
 
 <br>on Local<br>
 
-7. run `$HADOOP_HOME/sbin/start-dfs.sh` to start HDFS
+5. run `$HADOOP_HOME/sbin/start-dfs.sh` to start HDFS
 
-8. Check `http://master-PUBLIC-IP:9870`
+6. Check `http://master-PUBLIC-IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions

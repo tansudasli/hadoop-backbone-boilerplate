@@ -22,6 +22,16 @@ Generally,
 - create machines on GCP, and establish passwordless ssh from master to workers
 - and start 
 
+Create a GCP account and billing account etc..., Then
+
+1. Configure your _local_ for gcloud CLI or use _gcloud-shell_ in gcp console, after cloning the git-reporitory.
+    - for local, run `gcloud auth list` to check active gcp account. And `gcloud auth login` if necessary
+2. `git clone https://github.com/tansudasli/hadoop-backbone-boilerplate.git`, 
+    - Then `cd hadoop-backbone-boilerplate`
+    - Edit `.gcp.env` and update (service account, project, region etc...)
+3. Run `./create-gcp-project.sh` to create project, and to link your billing account
+4. Run `./create-firewall-rule.sh` to create fw rules, so that you can reach via web consoles
+
 
 #### More about production-readiness 
 

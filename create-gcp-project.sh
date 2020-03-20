@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .env
+source .gcp.env
 
 echo "First, create a gcp account and install gcp cli on your local"
 echo "Then, check active gcp account"
