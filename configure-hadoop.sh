@@ -4,8 +4,8 @@ source .env
 # contains hadoop specific env variables !
 
 echo "run on nameNode only"
-echo "backups hadoop conf. files. then add new lines"
-echo "then, formats hdfs namenode for the first time"
+#backups hadoop conf. files. then add new lines
+#then, formats hdfs namenode for the first time
 
 # install hadoop
 echo "extract hadoop files"
@@ -17,14 +17,14 @@ export SECONDARY_NAME_NODE=${HADOOP_INSTANCE_NAMES[1]}
 export WORKER_NODES=(${HADOOP_INSTANCE_NAMES[2]} ${HADOOP_INSTANCE_NAMES[3]})
 export HDFS_PATH=(/data-1)
 
-echo "configurations of HDFS"
 
-# backup conf. files touched
+echo "backup conf. files touched"
 cp ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh ${HADOOP_HOME}/etc/hadoop/hadoop-env-backup.sh
 cp ${HADOOP_HOME}/etc/hadoop/core-site.xml ${HADOOP_HOME}/etc/hadoop/core-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml ${HADOOP_HOME}/etc/hadoop/hdfs-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/workers ${HADOOP_HOME}/etc/hadoop/workers-backup
 
+echo "configurations of HDFS"
 
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
@@ -71,7 +71,7 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
     <property>
             <name>dfs.namenode.checkpoint.dir</name>
             <value>${HDFS_PATH[0]}/secondaryName</value>
-    </property>    
+    </property>
 
 <!--worker-->
     <property>
