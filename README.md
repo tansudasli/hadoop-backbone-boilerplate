@@ -1,6 +1,6 @@
 # hadoop-sandbox
 
-Fully Distributed installation of hadoop ecosystem on GCP IaaS.
+*Fully Distributed* installation of hadoop ecosystem on GCP IaaS.
 
 - [x] Apache Hadoop (hdfs): java8
 - [ ] Apache Hadoop (yarn, mapreduce)
@@ -18,11 +18,12 @@ Fully Distributed installation of hadoop ecosystem on GCP IaaS.
 
 Create a GCP account and billing account etc..., Then
 
-<br>on Local<br>
+<br>on Local or on gloud-shell<br>
 
-1. Configure your _local_ for gcloud CLI or use _gshell_, after cloning the git-reporitory.
+1. Configure your _local_ for gcloud CLI or use _gcloud-shell_ in gcp console, after cloning the git-reporitory.
     - for local, run `gcloud auth list` to check active gcp account. And `gcloud auth login` if necessary
 2. `git clone https://github.com/tansudasli/hadoop-sandbox.git`, then `cd hadoop-sandbox` folder
+    - Edit .env file, and update variables w/ your values ( service account, project, region etc...)
 3. Run `./preparations.sh` to create project, and to link billing account on GCP
 4. Run `./create-machines.sh` to create machines w/ `cloud-init.yaml` file on GCP
 
@@ -35,17 +36,17 @@ Create a GCP account and billing account etc..., Then
         - ssh to machine-2 *manually* and _add_ this into `nano .ssh/authorized_keys` content
         - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2 and w/ `ssh hadoop@machine-3` to machine-3
 
-<br>After this, machine-1 (which has nameNode) can ssh to machine-2 and machine-3 without password!
+<br>After this, master can ssh to other machines w/o password!
 
 <br>on nameNode<br>
 
 6. run `./configure-hadoop.sh` to configure _HDFS_ in distributed mode. 
     - Distributes conf files to other workers automatically
-    - Formats HDFS for first time usage
+    - Formats HDFS on nameNode for the first time usage
 
 <br>on Local<br>
 
-7. Check `http://machine-1-IP:9870`
+7. Check `http://master-PUBLIC-IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
