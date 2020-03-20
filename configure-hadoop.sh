@@ -7,9 +7,6 @@ echo "run on nameNode only"
 #backups hadoop conf. files. then add new lines
 #then, formats hdfs namenode for the first time
 
-# install hadoop
-echo "extract hadoop files"
-tar -xzf /hadoop-3.2.1.tar.gz
 
 # hadoop arch. topology - fully distributed
 export NAME_NODE=${HADOOP_INSTANCE_NAMES[0]}
