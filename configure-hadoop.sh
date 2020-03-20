@@ -9,9 +9,9 @@ echo "run on nameNode only"
 
 
 # hadoop arch. topology - fully distributed
-export NAME_NODE=${HADOOP_INSTANCE_NAMES[0]}
-export SECONDARY_NAME_NODE=${HADOOP_INSTANCE_NAMES[1]}
-export WORKER_NODES=(${HADOOP_INSTANCE_NAMES[2]} ${HADOOP_INSTANCE_NAMES[3]})
+export NAME_NODE=${INSTANCE_NAMES[0]}
+export SECONDARY_NAME_NODE=${INSTANCE_NAMES[1]}
+export WORKER_NODES=(${INSTANCE_NAMES[2]} ${INSTANCE_NAMES[3]})
 export HDFS_PATH=(/data-1)
 
 
@@ -87,10 +87,10 @@ EOL
 
 echo "distribute conf. files to all except master"
 # todo: can be replaced w/ rsync
-for i in $(seq 1 1 $((${#HADOOP_INSTANCE_NAMES[@]}-1))) 
+for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
 do
 
-  scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${HADOOP_INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
+  scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
 done
 
 
