@@ -29,12 +29,14 @@ Create a GCP account and billing account etc..., Then
 
 <br>on allMachines<br>
 
-5. ssh to instances on GCP, then `sudo -u hadoop -i` to switch to hadoop user, then `cd hadoop-sandbox` folder
-    - run `./checks.sh` to check results of step 4, then
-    - run `./ssh-passwordless.sh` to create public keys, and _.ssh_ folder for all machines.
-        - then in nameNode, copy .ssh/id_rsa.pub content into clipboard, and 
-        - ssh to machine-2 *manually* and _add_ this into `nano .ssh/authorized_keys` content
-        - then conect w/ `ssh hadoop@machine-2` from machine-1 to machine-2 and w/ `ssh hadoop@machine-3` to machine-3
+5. ssh to instances on GCP, 
+    - then `sudo -u hadoop -i` to switch to hadoop user, then `cd ~/hadoop-sandbox` folder
+        - run `./checks.sh` to check results of step 4, then
+        - run `./ssh-passwordless.sh` to create public keys, and _.ssh_ folder for all machines.
+            1. then in name-node, copy .ssh/id_rsa.pub content into clipboard, and 
+            2. ssh to secondary-name-node *manually* and _add_ this into `nano .ssh/authorized_keys` content
+            3. then conect w/ `ssh hadoop@secondary-name-node` from name-node
+        - Repeat last 2 and 3 steps to all machines...
 
 <br>After this, master can ssh to other machines w/o password!
 
