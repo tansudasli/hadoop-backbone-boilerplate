@@ -20,9 +20,9 @@ runcmd:
  - echo "=========download-repository========="
  - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-backbone-boilerplate.git
  - echo "=========download-files========="
- - wget "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /zookeeper-3.4.14.tar.gz
+ - wget "https://downloads.apache.org/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz" -O /zookeeper-3.6.0-bin.tar.gz
  - echo "=========extract-zookeeper-files========="
- - sudo -u hadoop -i tar -xzf /zookeeper-3.4.14.tar.gz
+ - sudo -u hadoop -i tar -xzf /zookeeper-3.6.0-bin.tar.gz
  - echo "=========add-additional-disk-1========="
  - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
  - sudo mkdir -p /data-1
