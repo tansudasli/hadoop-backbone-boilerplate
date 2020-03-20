@@ -10,6 +10,7 @@
 <br>on Local or on gloud-shell<br>
 
 1. `cd hadoop-backbone-boilerplate/playbook-hdfs`
+    - Edit `.env` and update
 2. Run `./02-create-machines.sh` to create machines. Uses `cloud-init.yaml` file
 
 <br>on allMachines<br>
