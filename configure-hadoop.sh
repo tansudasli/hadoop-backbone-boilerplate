@@ -25,7 +25,7 @@ echo "configurations of HDFS"
 
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo export HADOOP_LOG_DIR=${HDFS}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
+echo export HADOOP_LOG_DIR=${HDFS_PATH}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 
 
 # creates as new file
