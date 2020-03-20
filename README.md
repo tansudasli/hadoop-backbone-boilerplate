@@ -38,7 +38,9 @@ Create a GCP account and billing account etc..., Then
             3. then conect w/ `ssh hadoop@secondary-name-node` from name-node
         - Repeat last 2 and 3 steps to all machines...
 
-<br>After this, master can ssh to other machines w/o password!
+<br>
+
+After this, master can _ssh to other machines_ w/o password! Use `tests/check-ssh.sh`
 
 <br>on nameNode<br>
 
@@ -48,7 +50,9 @@ Create a GCP account and billing account etc..., Then
 
 <br>on Local<br>
 
-7. Check `http://master-PUBLIC-IP:9870`
+7. run `$HADOOP_HOME/sbin/start-dfs.sh` to start HDFS
+
+8. Check `http://master-PUBLIC-IP:9870`
     - or, `$HADOOP_HOME/logs`
     - or, `jps` to see java apps (namenode, secondarynamenode, datanode)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
