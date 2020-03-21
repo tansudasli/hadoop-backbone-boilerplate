@@ -19,8 +19,8 @@ echo "configurations of ZK"
 
 echo "servername's format is critical. must be 6 char, and last one must be uniquenumber"
 hostname=`hostname`
-serverNumber=${x:5:1}
-
+serverNumber=${hostname:5:1}
+echo "serverNumber="$serverNumber
 
 # creates as new file
 cat > ${ZOOKEEPER_HOME}/conf/zoo.cfg <<EOL
@@ -38,6 +38,8 @@ server.4=znode4:2888:3888
 server.5=znode5:2888:3888
 EOL
 
+# create data dir, for myid file before start scripts.!
+mkdir ${ZK_PATH[0]}/zookeeper
 
 # todo: every server must have a different number
 cat > ${ZK_PATH[0]}/zookeeper/myid <<EOL
