@@ -3,7 +3,7 @@ source .env
 
 # contains zk specific env variables !
 
-echo "run on nameNode only"
+echo "run on znode only"
 #
 #
 
@@ -19,7 +19,7 @@ echo "configurations of ZK"
 
 # creates as new file
 # public-IP creates bindingException error
-cat > ${ZOOKEEPER_HOME}/zoo.cfg <<EOL
+cat > ${ZOOKEEPER_HOME}/conf/zoo.cfg <<EOL
 tickTime=2000
 dataDir=${ZK_PATH}/zookeeper
 clientPort=2181
