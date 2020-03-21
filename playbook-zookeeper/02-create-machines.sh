@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .gcp.env
+source ../.gcp.env
 source .env
 
 
