@@ -46,5 +46,10 @@ cat > ${ZK_PATH[0]}/zookeeper/myid <<EOL
 $serverNumber
 EOL
 
+cat > ${ZOOKEEPER_HOME}/start-zk.sh <<EOL
+cd ${ZOOKEEPER_HOME}
+java -cp zookeeper.jar:lib/*:conf org.apache.zookeeper.server.quorum.QuorumPeerMain ./conf/zoo.cfg
+EOL
+
 echo "for cluster mode, inside $ZOOKEEPER_HOME folder, run java -cp zookeeper.jar:lib/*:conf org.apache.zookeeper.server.quorum.QuorumPeerMain ./conf/zoo.cfg"
 echo "then check client connection w/ -> bin/zkCli.sh -server IP:2181 to enter zk-shell"
