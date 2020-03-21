@@ -1,4 +1,5 @@
 
+source ../.gcp.env
 source .env
 
 echo "switch to hadoop user!"
