@@ -19,7 +19,7 @@
     - then `sudo -u hadoop -i` to switch to hadoop user, 
         - then `cd ~/hadoop-backbone-boilerplate/playbook-hdfs` folder
         - run `./checks.sh` to check results of step 4, then
-        - run `./02a-ssh-passwordless.sh` to create public keys, and _.ssh_ folder for *all machines*.
+        - run `./02a-ssh-passwordless.sh` to create hostname & IP match, public keys, and _.ssh_ folder for *all machines*.
             1. then in name-node, copy .ssh/id_rsa.pub content into clipboard, and 
             2. ssh to secondary-name-node *manually* and _add_ this into `nano .ssh/authorized_keys` content
             3. then conect w/ `ssh hadoop@secondary-name-node` from name-node

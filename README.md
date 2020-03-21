@@ -4,7 +4,7 @@
 
 - [x] Apache Hadoop (hdfs): java8
 - [ ] Apache Hadoop (yarn, mapreduce)
-- [ ] Apache Zookeeper: java8
+- [x] Apache Zookeeper: java8
 - [ ] Apache Hbase: java8, hdfs, Zookeeper
 - [ ] Apache Spark: java8, Zookeeper ???
 - [ ] Apache Kafka: java8, Zookeeper
@@ -17,8 +17,10 @@
 ### How to Start
 
 Generally,
-- choose what you need (hdfs, hdfs + hbase etc..)
-- design inrastructure arch. on .env files in related folders (or combine yourself or add new ecosystem product)
+
+- choose which playbook do you need (hdfs, hdfs + hbase, zookeeper etc..)
+- design inrastructure arch. on .env files in related folders
+    - you can also combine your own playbook (good for trainings or POCs)
 - create machines on GCP, and establish passwordless ssh from master to workers
 - and start 
 
