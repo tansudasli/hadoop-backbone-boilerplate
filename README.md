@@ -48,6 +48,7 @@ Create a GCP account and billing account etc..., Then
 - [ ] More hadoop security (kerberos etc.)
 - [ ] More network layer security (diff. subnets etc.)
 - [ ] Add rsync to crontab to sync conf files
+- [ ] Central DNS management (not hostname update)
 
 and consider 
 - _free_ cloudera distribution for better hadoop management,
