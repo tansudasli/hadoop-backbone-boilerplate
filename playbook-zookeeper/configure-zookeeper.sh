@@ -28,6 +28,7 @@ tickTime=2000
 dataDir=${ZK_PATH[0]}/zookeeper
 dataLogDir=${ZK_PATH[0]}/logs
 clientPort=2181
+maxClientCnxns=60
 initLimit=5
 syncLimit=2
 server.1=znode1:2888:3888
