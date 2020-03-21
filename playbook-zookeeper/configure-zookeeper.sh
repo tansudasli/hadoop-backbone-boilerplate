@@ -24,3 +24,5 @@ tickTime=2000
 dataDir=${ZK_PATH}/zookeeper
 clientPort=2181
 EOL
+
+echo "run bin/zkServer start, then check bin/zkCli -server IP:2181 to enter zk-shell"
