@@ -1,4 +1,4 @@
-# hadoop-sandbox
+# hdfs
 
 *Fully Distributed* installation of hadoop ecosystem on GCP IaaS.
 
@@ -35,7 +35,7 @@ After this, master can _ssh to other machines_ w/o password! Use `hadoop-backbon
     - Distributes conf files to other workers automatically
     - Formats HDFS on nameNode for the first time usage
 
-<br>on Local<br>
+<br>on nameNode<br>
 
 5. run `$HADOOP_HOME/sbin/start-dfs.sh` to start HDFS
 
