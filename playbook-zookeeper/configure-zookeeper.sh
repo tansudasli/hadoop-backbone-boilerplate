@@ -1,12 +1,12 @@
 
 source .env
 
+
+echo "run on all znodes"
+#
+#
+
 # contains zk specific env variables !
-
-echo "run on znode only"
-#
-#
-
 
 # hadoop arch. topology - fully distributed
 # export NAME_NODE=${INSTANCE_NAMES[0]}
@@ -54,5 +54,5 @@ EOL
 
 chmod +x ${ZOOKEEPER_HOME}/start-zk.sh
 
-echo "for cluster mode, ./start-zk.sh"
-echo "then check client connection w/ -> bin/zkCli.sh -server IP:2181 to enter zk-shell"
+echo "for cluster mode, run ${ZOOKEEPER_HOME}/start-zk.sh on all znodes"
+echo "then check client connection w/ -> ${ZOOKEEPER_HOME}/bin/zkCli.sh -server IP:2181 to enter zk-shell"

@@ -1,12 +1,11 @@
 
 source .env
 
-# contains hadoop specific env variables !
-
 echo "run on nameNode only"
 #backups hadoop conf. files. then add new lines
 #then, formats hdfs namenode for the first time
 
+# contains hadoop specific env variables !
 
 # hadoop arch. topology - fully distributed
 export NAME_NODE=${INSTANCE_NAMES[0]}
