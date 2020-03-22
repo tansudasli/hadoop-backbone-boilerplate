@@ -21,7 +21,7 @@ runcmd:
  - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-backbone-boilerplate.git
  - echo "=========download-files========="
  - wget "https://ftp.itu.edu.tr/Mirror/Apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz" -O /hadoop-3.2.1.tar.gz
- - wget "https://archive.apache.org/dist/zookeeper/zookeeper-3.4.14/zookeeper-3.4.14.tar.gz" -O /zookeeper-3.4.14.tar.gz
+ - wget "https://downloads.apache.org/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz" -O /apache-zookeeper-3.6.0-bin.tar.gz
  - wget "https://ftp.itu.edu.tr/Mirror/Apache/hbase/2.2.3/hbase-2.2.3-bin.tar.gz" -O /hbase-2.2.3-bin.tar.gz
  - wget "https://ftp.itu.edu.tr/Mirror/Apache/spark/spark-3.0.0-preview2/spark-3.0.0-preview2-bin-hadoop3.2.tgz" -O /spark-3.0.0.tgz
  - echo "=========extract-hadoop-files========="
