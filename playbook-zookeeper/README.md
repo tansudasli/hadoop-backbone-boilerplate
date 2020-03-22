@@ -38,3 +38,4 @@ After this, master can _ssh to other machines_ w/o password!
     - or, `jps` to see java apps (QuorumPeerMain, ..)
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
     - or, `sudo ss -atpu` sshd listening and connected status
+    - or, `cat $ZOOKEEPER_HOME/nohup.out | tail &`
