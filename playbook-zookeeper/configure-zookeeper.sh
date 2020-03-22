@@ -8,11 +8,8 @@ echo "run on all znodes"
 
 # contains zk specific env variables !
 
-# hadoop arch. topology - fully distributed
-# export NAME_NODE=${INSTANCE_NAMES[0]}
-# export SECONDARY_NAME_NODE=${INSTANCE_NAMES[1]}
-# export WORKER_NODES=(${INSTANCE_NAMES[2]} ${INSTANCE_NAMES[3]})
-
+# design arch. topology - fully distributed
+export ZK_NODE=${INSTANCE_NAMES[@]}
 export ZK_PATH=(/data-1)
 
 # STEP: configuration
@@ -32,11 +29,11 @@ clientPort=2181
 maxClientCnxns=60
 initLimit=5
 syncLimit=2
-server.1=znode1:2888:3888
-server.2=znode2:2888:3888
-server.3=znode3:2888:3888
-server.4=znode4:2888:3888
-server.5=znode5:2888:3888
+server.1=${ZK_NODE[0]}:2888:3888
+server.2=${ZK_NODE[1]}:2888:3888
+server.3=${ZK_NODE[2]}:2888:3888
+server.4=${ZK_NODE[3]}:2888:3888
+server.5=${ZK_NODE[4]}:2888:3888
 EOL
 
 # create data dir, for myid file before start scripts.!
