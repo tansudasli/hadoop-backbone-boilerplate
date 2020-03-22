@@ -39,3 +39,4 @@ After this, master can _ssh to other machines_ w/o password!
     - or, `netstat -a -t --numeric-ports -p` for binding exceptions
     - or, `sudo ss -atpu` sshd listening and connected status
     - or, `cat $ZOOKEEPER_HOME/nohup.out | tail &`
+    - or, `${ZOOKEEPER_HOME}/bin/zkCli.sh -server IP:2181` to enter zk-shell
