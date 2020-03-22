@@ -15,6 +15,7 @@ echo "run on all znodes"
 
 export ZK_PATH=(/data-1)
 
+# STEP: configuration
 echo "configurations of ZK"
 
 echo "servername's format is critical. must be 6 char, and last one must be uniquenumber"
@@ -46,7 +47,7 @@ cat > ${ZK_PATH[0]}/zookeeper/myid <<EOL
 $serverNumber
 EOL
 
-# create file to start zk easiliy
+# STEP: create file to start zk easiliy
 cat > ${ZOOKEEPER_HOME}/start-zk.sh <<EOL
 cd ${ZOOKEEPER_HOME}
 nohup java -cp zookeeper.jar:lib/*:conf org.apache.zookeeper.server.quorum.QuorumPeerMain ./conf/zoo.cfg &

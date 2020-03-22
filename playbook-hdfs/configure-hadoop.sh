@@ -13,13 +13,14 @@ export SECONDARY_NAME_NODE=${INSTANCE_NAMES[1]}
 export WORKER_NODES=(${INSTANCE_NAMES[2]} ${INSTANCE_NAMES[3]})
 export HDFS_PATH=(/data-1)
 
-
+# STEP: backup
 echo "backup conf. files touched"
 cp ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh ${HADOOP_HOME}/etc/hadoop/hadoop-env-backup.sh
 cp ${HADOOP_HOME}/etc/hadoop/core-site.xml ${HADOOP_HOME}/etc/hadoop/core-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml ${HADOOP_HOME}/etc/hadoop/hdfs-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/workers ${HADOOP_HOME}/etc/hadoop/workers-backup
 
+# STEP: configuration
 echo "configurations of HDFS"
 
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
@@ -27,8 +28,6 @@ echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.s
 echo export HADOOP_LOG_DIR=${HDFS_PATH}/logs >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 
 
-# creates as new file
-# public-IP creates bindingException error
 cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 <configuration>
     <property>
@@ -38,7 +37,6 @@ cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 </configuration>
 EOL
 
-# creates as new file
 cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 <configuration>
 
@@ -77,21 +75,21 @@ cat > ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml <<EOL
 </configuration>
 EOL
 
-# creates as new file
 # put only dataNodes' machines
 cat > ${HADOOP_HOME}/etc/hadoop/workers <<EOL
 ${WORKER_NODES[0]}
 ${WORKER_NODES[1]}
 EOL
 
+# STEP: distribute
 echo "distribute conf. files to all except master"
-# todo: can be replaced w/ rsync
+
 for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
 do
 
   scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
 done
 
-
+# STEP: format
 echo "format HDFS for the first time"
 ${HADOOP_HOME}/bin/hdfs namenode -format

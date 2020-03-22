@@ -4,7 +4,7 @@ source ../.gcp.env
 source .env
 
 
-# ----------- create static-IPs ---------
+# STEP: create static-IPs
 
 # creates static-regional IPs, then assigns to compute-engines
 # todo: normally only web interface servers need static-IP
@@ -16,7 +16,7 @@ do
    gcloud compute addresses create ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION}
 done
 
-# ----------- create machines and assign static-IPs ---------
+# STEP: create machines and assign static-IPs, and mount
 
 # deletes data disks! keep in mind 
 # creates compute engine w/ N additional-disk in N zone

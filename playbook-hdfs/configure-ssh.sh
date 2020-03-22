@@ -6,7 +6,7 @@ echo "ssh to remote machine, then Run configure-ssh.."
 echo "then Run configure-... files"
 
 
-# add hostname and internal-IPs to /etc/hosts file
+# STEP: add hostname and internal-IPs to /etc/hosts file
 echo "Add private-IPs into /etc/hosts file"
 
 for i in `gcloud compute instances list --project=${PROJECT_ID}| awk 'NR>1 {print $4 "#" $1}'`
@@ -16,7 +16,7 @@ do
 done
 
 
-# create ssh-keys
+# STEP: create ssh-keys
 echo "create ssh-keys, and update .ssh/authorized_keys"
 ssh-keygen -t rsa -P '' -f /home/hadoop/.ssh/id_rsa
 cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys
