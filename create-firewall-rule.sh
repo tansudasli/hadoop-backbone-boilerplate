@@ -3,7 +3,7 @@ source .gcp.env
 
 export RULE_NAME=hadoop-allow-management
 
-gcloud compute --project=${PROJECT_NAME} firewall-rules create ${RULE_NAME} \
+gcloud compute --project=${PROJECT_ID} firewall-rules create ${RULE_NAME} \
     --description="hadoop management ports" \
     --direction=INGRESS \
     --priority=1000 \
