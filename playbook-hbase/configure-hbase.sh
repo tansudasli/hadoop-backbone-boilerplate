@@ -15,14 +15,14 @@ export HBASE_PATH=(/data-1)
 
 # STEP: backup
 echo "backup conf. files touched"
-cp ${ZOOKEEPER_HOME}/conf/hbase-env.sh ${ZOOKEEPER_HOME}/conf/hbase-env-backup.sh
-cp ${ZOOKEEPER_HOME}/conf/hbase-site.xml ${ZOOKEEPER_HOME}/conf/hbase-site-backup.xml
+cp ${HBASE_HOME}/conf/hbase-env.sh ${HBASE_HOME}/conf/hbase-env-backup.sh
+cp ${HBASE_HOME}/conf/hbase-site.xml ${HBASE_HOME}/conf/hbase-site-backup.xml
 
 
 # STEP: configuration
-echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${ZOOKEEPER_HOME}/conf/hbase-env.sh
+echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HBASE_HOME}/conf/hbase-env.sh
 # echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
-echo export HBASE_LOG_DIR=${HBASE_PATH}/logs >> ${ZOOKEEPER_HOME}/conf/hbase-env.sh
+echo export HBASE_LOG_DIR=${HBASE_PATH}/logs >> ${HBASE_HOME}/conf/hbase-env.sh
 
 
 # cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
@@ -62,17 +62,17 @@ cat > ${ZOOKEEPER_HOME}/conf/hbase-site.xml <<EOL
 EOL
 
 # put only dataNodes' machines
-cat > ${HADOOP_HOME}/etc/hadoop/workers <<EOL
-${WORKER_NODES[0]}
-${WORKER_NODES[1]}
-EOL
+# cat > ${HADOOP_HOME}/etc/hadoop/workers <<EOL
+# ${WORKER_NODES[0]}
+# ${WORKER_NODES[1]}
+# EOL
 
 # STEP: distribute
-for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
-do
+# for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
+# do
 
-  scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
-done
+#   scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
+# done
 
 # STEP: format
-${HADOOP_HOME}/bin/hdfs namenode -format
+# ${HADOOP_HOME}/bin/hdfs namenode -format
