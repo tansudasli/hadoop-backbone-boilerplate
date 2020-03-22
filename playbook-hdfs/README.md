@@ -11,7 +11,7 @@
 
 1. `cd hadoop-backbone-boilerplate/playbook-hdfs`
     - Edit `.env` and update
-2. Run `./02-create-machines.sh` to create machines. Uses `cloud-init.yaml` file
+2. Run `./create-machines.sh` to create machines. Uses `cloud-init.yaml` file
 
 <br>on allMachines<br>
 
@@ -19,10 +19,10 @@
     - then `sudo -u hadoop -i` to switch to hadoop user, 
         - then `cd ~/hadoop-backbone-boilerplate/playbook-hdfs` folder
         - run `./checks.sh` to check results of step 4, then
-        - run `./02a-ssh-passwordless.sh` to create hostname & IP match, public keys, and _.ssh_ folder for *all machines*.
-            1. then in name-node, copy .ssh/id_rsa.pub content into clipboard, and 
-            2. ssh to secondary-name-node *manually* and _add_ this into `nano .ssh/authorized_keys` content
-            3. then conect w/ `ssh hadoop@secondary-name-node` from name-node
+        - run `./configure-ssh.sh` to create hostname & IP match, public keys, and _.ssh_ folder for *all machines*.
+            1. then in master, copy .ssh/id_rsa.pub content into clipboard, and 
+            2. ssh to other related nodes *manually* and _add_ this into `nano .ssh/authorized_keys` content
+            3. then conect w/ `ssh hadoop@NODENAME` from master
         - Repeat last 2 and 3 steps to all machines...
 
 <br>
