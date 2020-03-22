@@ -51,15 +51,4 @@ do
 done
 
 
-
-# gcloud compute addresses describe machine-1 --region=europe-west4 --format='get(address)'
-
-# todo: format attached disks
-# todo: create static-regional IP addresses, and assign 
-# todo: hadoop-stack configurations
-
-
-
-# then connect w/ ssh
-# gcloud compute --project $PROJECT_ID ssh --zone $ZONE_NAME $INSTANCE_NAMES
-
+echo "ssh to master/znode then continue w/ configure-ssh... files"
