@@ -34,7 +34,7 @@ echo export HBASE_LOG_DIR=${HBASE_PATH}/logs >> ${HBASE_HOME}/conf/hbase-env.sh
 # </configuration>
 # EOL
 
-cat > ${ZOOKEEPER_HOME}/conf/hbase-site.xml <<EOL
+cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
 <configuration>
 
 <!--master-->
