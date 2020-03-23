@@ -76,3 +76,5 @@ EOL
 
 # STEP: format
 # ${HADOOP_HOME}/bin/hdfs namenode -format
+
+echo "start hbase, run ${HBASE_HOME}/bin/start-hbase.sh"
