@@ -9,7 +9,7 @@ echo "....."
 
 # design arch. topology - fully distributed
 export HMASTER_NODE=${INSTANCE_NAMES[9]}
-export SECONDARY_HMASTER=${INSTANCE_NAMES[10]}
+export BACKUP_HMASTERS=(${INSTANCE_NAMES[10]})
 export REGION_SERVERS=(${INSTANCE_NAMES[11]} ${INSTANCE_NAMES[12]})
 export HBASE_PATH=(/data-1)
 
@@ -68,20 +68,23 @@ cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
 </configuration>
 EOL
 
-# put only dataNodes' machines
-# cat > ${HADOOP_HOME}/etc/hadoop/workers <<EOL
-# ${WORKER_NODES[0]}
-# ${WORKER_NODES[1]}
-# EOL
+# put only regionServers' machines
+cat > ${HBASE_HOME}/conf/regionservers <<EOL
+${REGION_SERVERS[0]}
+${REGION_SERVERS[1]}
+EOL
+
+# put only backup masters' machines
+cat > ${HBASE_HOME}/conf/backup-masters <<EOL
+${BACKUP_HMASTERS[0]}
+EOL
 
 # STEP: distribute
-# for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
-# do
+for i in $(seq 10 1 3) 
+do
 
-#   scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
-# done
+  scp ${HBASE_HOME}/conf/* hadoop@${INSTANCE_NAMES[i]}:${HBASE_HOME}/conf/
+done
 
-# STEP: format
-# ${HADOOP_HOME}/bin/hdfs namenode -format
 
 echo "start hbase, run ${HBASE_HOME}/bin/start-hbase.sh"
