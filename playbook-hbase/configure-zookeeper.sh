@@ -9,7 +9,7 @@ echo "run on all znodes"
 # contains zk specific env variables !
 
 # design arch. topology - fully distributed
-export ZK_NODE=${INSTANCE_NAMES[@]:4:5]}
+export ZK_NODE=${INSTANCE_NAMES[@]:4:5}
 export ZK_PATH=(/data-1)
 
 # STEP: configuration

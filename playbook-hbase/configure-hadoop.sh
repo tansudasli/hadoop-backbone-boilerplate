@@ -84,7 +84,7 @@ EOL
 # STEP: distribute
 echo "distribute conf. files to all except master"
 
-for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
+for i in $(seq 1 1 3) 
 do
 
   scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
