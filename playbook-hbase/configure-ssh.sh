@@ -22,7 +22,9 @@ ssh-keygen -t rsa -P '' -f /home/hadoop/.ssh/id_rsa
 cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys
 chmod 0600 /home/hadoop/.ssh/authorized_keys
 
-echo "Run configure-ssh... in all workers, then Manually cat /home/hadoop/.ssh/authorized_keys in master to the workers' authorized_keys!"
+
+echo "Run configure-ssh... in all workers, then"
+echo "     in hdfs -> Manually cat /home/hadoop/.ssh/authorized_keys in master to the workers' authorized_keys!""
 
 # send to other servers
 # - then in nameNode, copy .ssh/id_rsa.pub content into clipboard, and 
