@@ -39,18 +39,18 @@ cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
 
 <!--master-->
     <property>
-            <name>hbase.rootdir</name>
-            <value>${HBASE_HOME}/root/hbase</value>
+        <name>hbase.cluster.distributed</name>
+        <value>true</value>
     </property>
 
     <property>
-            <name>hbase.zookeeper.property.dataDir</name>
-            <value>${HBASE_HOME}/root/zookeeper</value>
+        <name>hbase.rootdir</name>
+        <value>hdfs://name-node:9000/hbase</value>
     </property>
 
     <property>
-            <name>hbase.unsafe.stream.capability.enforce</name>
-            <value>false</value>
+        <name>hbase.zookeeper.property.dataDir</name>
+        <value>${HBASE_HOME}/root/zookeeper</value>
     </property>
 
 <!--secondaryMaster-->
