@@ -93,3 +93,5 @@ done
 # STEP: format
 echo "format HDFS for the first time"
 ${HADOOP_HOME}/bin/hdfs namenode -format
+
+echo "Run $HADOOP_HOME/sbin/start-dfs.sh"
