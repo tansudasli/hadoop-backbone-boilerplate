@@ -53,6 +53,13 @@ cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
         <value>${HBASE_HOME}/root/zookeeper</value>
     </property>
 
+<!--
+    <property>
+        <name>hbase.unsafe.stream.capability.enforce</name>
+        <value>true</value>
+    </property>
+-->
+
 <!--secondaryMaster-->
 
 
