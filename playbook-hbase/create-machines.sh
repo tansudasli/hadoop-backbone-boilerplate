@@ -50,5 +50,6 @@ do
 
 done
 
-
-echo "ssh to master/znode then continue w/ configure-ssh... files"
+echo "configure hdfs, then zookeeper, then hbase! "
+echo "ssh to master-node then run configure-ssh... files"
+echo "ssh to znodes then run configure-ssh... files"
