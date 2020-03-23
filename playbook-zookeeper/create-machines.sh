@@ -37,12 +37,12 @@ do
    x=$x" --labels=${LABELS[i]}"
    x=$x" --image=${IMAGE}"
    x=$x" --image-project=ubuntu-os-cloud"
-   x=$x" --boot-disk-size=500GB"
+   x=$x" --boot-disk-size=250GB"
    x=$x" --boot-disk-type=pd-standard"
    x=$x" --boot-disk-device-name=${INSTANCE_NAMES[i]}"
    for j in $(seq 0 1 $(($ADDITIONAL_DISK_COUNT-1)))
    do 
-      x=$x" --create-disk=mode=rw,auto-delete=yes,size=500,type=projects/${PROJECT_ID}/zones/${ZONES[i]}/diskTypes/pd-standard,name=${INSTANCE_NAMES[i]}-data-${j},device-name=${ADDITIONAL_DISKS[j]}" 
+      x=$x" --create-disk=mode=rw,auto-delete=yes,size=250,type=projects/${PROJECT_ID}/zones/${ZONES[i]}/diskTypes/pd-standard,name=${INSTANCE_NAMES[i]}-data-${j},device-name=${ADDITIONAL_DISKS[j]}" 
    done
    x=$x" --no-shielded-secure-boot --shielded-vtpm --shielded-integrity-monitoring --reservation-affinity=any"
    x=$x" --metadata-from-file user-data=./cloud-init.yaml"
