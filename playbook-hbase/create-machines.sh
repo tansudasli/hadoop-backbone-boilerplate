@@ -27,7 +27,7 @@ do
    x="gcloud beta compute --project=${PROJECT_ID} instances create ${INSTANCE_NAMES[i]}"
    x=$x" --zone=${ZONES[i]}"
    x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
-   x=$x" --machine-type=custom-2-13312"
+   x=$x" --machine-type=${MACHINE_TYPES[i]}"
    x=$x" --subnet=default"
    x=$x" --network-tier=PREMIUM"
    x=$x" --maintenance-policy=MIGRATE"

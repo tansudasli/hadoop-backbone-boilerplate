@@ -11,7 +11,8 @@ users:
 package_upgrade: true
 package_update: true
 
-# todo: edit disk format and mounting for additional disks which is available in .env file! below mounts only one! then update checks.sh file.
+# todo: edit disk format and mounting for additional disks which is available in .env file! 
+# below mounts only one! then update checks.sh file.
 # todo: check logs: cat /var/log/syslog | grep =====
 # todo: check disks mounted w/ lsblk and df -h 
 # todo: check => java -version, ssh -V, pdsh -V, gcloud version
@@ -21,7 +22,7 @@ runcmd:
  - sudo -u hadoop -i git clone https://github.com/tansudasli/hadoop-backbone-boilerplate.git
  - echo "=========download-files========="
  - wget "https://downloads.apache.org/zookeeper/zookeeper-3.6.0/apache-zookeeper-3.6.0-bin.tar.gz" -O /apache-zookeeper-3.6.0-bin.tar.gz
- - echo "=========extract-zookeeper-files========="
+ - echo "=========extract-hadoop-files========="
  - sudo -u hadoop -i tar -xzf /apache-zookeeper-3.6.0-bin.tar.gz
  - echo "=========add-additional-disk-1========="
  - sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
@@ -33,7 +34,6 @@ runcmd:
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
- - echo "export ZOOKEEPER_HOME=/home/hadoop/apache-zookeeper-3.6.0-bin" >> /etc/environment
  - echo PATH="$PATH:/snap/bin" >> /etc/environment
  - source /etc/environment
  - echo "=========end========="
