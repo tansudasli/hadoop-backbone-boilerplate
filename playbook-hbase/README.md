@@ -13,4 +13,4 @@
     - and check logs `cat /var/log/syslog | grep =====` till you see _end_ line.
 - ssh to machines, 
     - switch to `sudo -u hadoop -i` user, then setup passwordless ssh `./configure-ssh.sh`. follow the further steps on screen.
-    - then on related nodes, `./configure-hbase.sh`, `./configure-zookeeper.sh` , then `./configure-hbase.sh`. follow the further steps on screen.
+    - then on related nodes, `./configure-hadoop.sh`, `./configure-zookeeper.sh` , then `./configure-hbase.sh`. follow the further steps on screen.

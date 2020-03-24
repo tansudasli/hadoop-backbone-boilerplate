@@ -2,19 +2,18 @@
 source .env
 
 echo "run on nameNode only"
-#backups hadoop conf. files. then add new lines
-#then, formats hdfs namenode for the first time
 
-# contains hadoop specific env variables !
+# todo: design fully distributed arch. here
+# contains internal env variables !
+HADOOP_HOME=/home/hadoop/hadoop-3.2.1
 
-# hadoop arch. topology - fully distributed
-export NAME_NODE=${INSTANCE_NAMES[0]}
-export SECONDARY_NAME_NODE=${INSTANCE_NAMES[1]}
-export WORKER_NODES=(${INSTANCE_NAMES[2]} ${INSTANCE_NAMES[3]})
-export HDFS_PATH=(/data-1)
+NAME_NODE=${INSTANCE_NAMES[0]}
+SECONDARY_NAME_NODE=${INSTANCE_NAMES[1]}
+WORKER_NODES=(${INSTANCE_NAMES[2]} ${INSTANCE_NAMES[3]})
+HDFS_PATH=(/data-1)
 
 # STEP: backup
-echo "backup conf. files touched"
+echo "backup conf. files"
 cp ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh ${HADOOP_HOME}/etc/hadoop/hadoop-env-backup.sh
 cp ${HADOOP_HOME}/etc/hadoop/core-site.xml ${HADOOP_HOME}/etc/hadoop/core-site-backup.xml
 cp ${HADOOP_HOME}/etc/hadoop/hdfs-site.xml ${HADOOP_HOME}/etc/hadoop/hdfs-site-backup.xml
@@ -84,7 +83,7 @@ EOL
 # STEP: distribute
 echo "distribute conf. files to all except master"
 
-for i in $(seq 1 1 $((${#INSTANCE_NAMES[@]}-1))) 
+for i in $(seq 1 1 3) 
 do
 
   scp ${HADOOP_HOME}/etc/hadoop/* hadoop@${INSTANCE_NAMES[i]}:${HADOOP_HOME}/etc/hadoop/
@@ -93,3 +92,6 @@ done
 # STEP: format
 echo "format HDFS for the first time"
 ${HADOOP_HOME}/bin/hdfs namenode -format
+
+echo "HADOOP_HOME=$HADOOP_HOME"
+echo "Run $HADOOP_HOME/sbin/start-dfs.sh to start hdfs."

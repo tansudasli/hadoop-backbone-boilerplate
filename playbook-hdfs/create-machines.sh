@@ -27,7 +27,7 @@ do
    x="gcloud beta compute --project=${PROJECT_ID} instances create ${INSTANCE_NAMES[i]}"
    x=$x" --zone=${ZONES[i]}"
    x=$x" --address $(gcloud compute addresses describe ${INSTANCE_NAMES[i]} --project=${PROJECT_ID} --region=${REGION} --format='get(address)')"
-   x=$x" --machine-type=custom-2-13312"
+   x=$x" --machine-type=${MACHINE_TYPES[i]}"
    x=$x" --subnet=default"
    x=$x" --network-tier=PREMIUM"
    x=$x" --maintenance-policy=MIGRATE"
@@ -50,5 +50,6 @@ do
 
 done
 
-
-echo "ssh to master/znode then continue w/ configure-ssh... files"
+echo "configure hdfs"
+echo "always switch to hadoop user (sudo -u hadoop -i), to do configurations"
+echo "ssh to master-node then run configure-ssh... file on others"

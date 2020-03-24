@@ -21,7 +21,7 @@
     - or, `bin/zkCli.sh -server IP:2181` to enter zk-shell
     - or, `/data-1/logs`
     - or, `jps` to see java apps (QuorumPeerMain, ..)
-    - or, `netstat -a -t --numeric-ports -p` for binding exceptions
+    - or, `netstat -a -t --numeric-ports -p` for used ports
     - or, `sudo ss -atpu` sshd listening and connected status
     - or, `cat $ZOOKEEPER_HOME/nohup.out | tail &`
 
