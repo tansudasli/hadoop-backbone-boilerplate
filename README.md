@@ -43,6 +43,7 @@ Create a GCP account and billing account etc..., Then
 - [ ] Dynamic port management (open for only masters)
 - [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
 - [x] Shared zookeeper (instead hbase managed ..)
+- [ ] Adjust file and process limits in linux (ulimit -n, -u)
 - [ ] JVM optimizations
 - [x] Better disk architecture (local ssd disks etc.)
 - [ ] Backup to network attached disks (hdfs full image ..)
