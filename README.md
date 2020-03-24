@@ -2,13 +2,14 @@
 
 *Fully Distributed* installation of hadoop ecosystem on GCP IaaS.
 
-- [x] Apache Hadoop (hdfs): java8
+- [x] Apache Hadoop (hdfs): java8 (playbook-hdfs)
 - [ ] Apache Hadoop (yarn, mapreduce)
-- [x] Apache Zookeeper: java8
-- [ ] Apache Hbase: java8, hdfs, Zookeeper
+- [x] Apache Zookeeper: java8 (playbook-zookeeper)
+- [x] Apache Hbase: java8, hdfs, Zookeeper (playbook-hbase)
 - [ ] Apache Spark: java8, Zookeeper
 - [ ] Apache Kafka: java8, Zookeeper
 
+all playbooks are consistent within related tools
 
 ## High Level Architecture
    
@@ -17,12 +18,12 @@
 ### How to Start
 
 Generally,
-
 - choose which playbook do you need (hdfs, hdfs + hbase, zookeeper etc..)
-- design inrastructure arch. on .env files in related folders
+- design inrastructure arch. on .env files in related playbook folders.
     - you can also combine your own playbook (good for trainings or POCs)
 - create machines on GCP, and establish passwordless ssh from master to workers
-- and start 
+- and configure products
+- then start servers
 
 Create a GCP account and billing account etc..., Then
 
@@ -40,7 +41,7 @@ Create a GCP account and billing account etc..., Then
 - [x] More optimized and parametric scripts (env files etc.)
 - [ ] Use less static-IPs (just for masters etc.)
 - [x] Dynamic machine-Types regarding to purposes (diff. CPU and RAM configs)
-- [ ] Dynamic port management (open for only masters)
+- [ ] Dynamic port management (open it only for masters)
 - [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
 - [x] Shared zookeeper (instead hbase managed ..)
 - [ ] Adjust file and process limits in linux (ulimit -n, -u)
@@ -50,8 +51,10 @@ Create a GCP account and billing account etc..., Then
 - [ ] More hadoop security (kerberos etc.)
 - [ ] More network layer security (diff. subnets etc.)
 - [ ] Add rsync to crontab to sync conf files
+- [ ] Better log management (esp. for zk ..)
 - [ ] Central DNS management (not hostname update)
+- [ ] General optimizations related to other ecosystem tools (hbase changes some hdfs parameters ...)
 
-and consider 
+and also consider 
 - _free_ cloudera distribution for better hadoop management,
 - and ansible for on-premise configuration management and provisioning

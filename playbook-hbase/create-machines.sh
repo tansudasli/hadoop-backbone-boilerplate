@@ -51,5 +51,7 @@ do
 done
 
 echo "configure hdfs, then zookeeper, then hbase! "
-echo "ssh to master-node then run configure-ssh... files"
-echo "ssh to znodes then run configure-ssh... files"
+echo "always switch to hadoop user (sudo -u hadoop -i), to do configurations"
+echo "ssh to master-node then run configure-ssh... file on others"
+echo "ssh to znodes then run configure-ssh... files on all"
+echo "ssh to hmaster then run configure-ssh... files on others"

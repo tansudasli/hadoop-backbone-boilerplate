@@ -11,7 +11,8 @@ users:
 package_upgrade: true
 package_update: true
 
-# todo: edit disk format and mounting for additional disks which is available in .env file! below mounts only one! then update checks.sh file.
+# todo: edit disk format and mounting for additional disks which is available in .env file! 
+# below mounts only one! then update checks.sh file.
 # todo: check logs: cat /var/log/syslog | grep =====
 # todo: check disks mounted w/ lsblk and df -h 
 # todo: check => java -version, ssh -V, pdsh -V, gcloud version
@@ -38,9 +39,6 @@ runcmd:
  - echo "=========bug-fix========="
  - echo "export PDSH_RCMD_TYPE=ssh" >> /etc/environment
  - echo "export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> /etc/environment
- - echo "export HADOOP_HOME=/home/hadoop/hadoop-3.2.1" >> /etc/environment
- - echo "export ZOOKEEPER_HOME=/home/hadoop/apache-zookeeper-3.6.0-bin" >> /etc/environment
- - echo "export HBASE_HOME=/home/hadoop/hbase-2.2.3" >> /etc/environment
  - echo PATH="$PATH:/snap/bin" >> /etc/environment
  - source /etc/environment
  - echo "=========end========="
