@@ -27,15 +27,6 @@ echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HB
 echo export HBASE_LOG_DIR=${HBASE_PATH}/logs >> ${HBASE_HOME}/conf/hbase-env.sh
 echo export HBASE_MANAGES_ZK=false >> ${HBASE_HOME}/conf/hbase-env.sh
 
-# cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
-# <configuration>
-#     <property>
-#         <name>fs.defaultFS</name>
-#         <value>hdfs://${NAME_NODE}:9000</value>
-#     </property>
-# </configuration>
-# EOL
-
 cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
 <configuration>
 
