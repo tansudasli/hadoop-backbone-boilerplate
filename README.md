@@ -42,6 +42,7 @@ Create a GCP account and billing account etc..., Then
 - [x] Dynamic machine-Types regarding to purposes (diff. CPU and RAM configs)
 - [ ] Dynamic port management (open for only masters)
 - [x] Nodes should be dedicated to hdfs, hbase, spark etc... So it becomes *fully distributed*
+- [x] Shared zookeeper (instead hbase managed ..)
 - [ ] JVM optimizations
 - [x] Better disk architecture (local ssd disks etc.)
 - [ ] Backup to network attached disks (hdfs full image ..)

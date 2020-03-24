@@ -11,6 +11,9 @@ echo "....."
 export HMASTER_NODE=${INSTANCE_NAMES[9]}
 export BACKUP_HMASTERS=(${INSTANCE_NAMES[10]})
 export REGION_SERVERS=(${INSTANCE_NAMES[11]} ${INSTANCE_NAMES[12]})
+
+export ZK_NODE=(${INSTANCE_NAMES[@]:4:5})
+
 export HBASE_PATH=(/data-1)
 
 # STEP: backup
@@ -21,9 +24,8 @@ cp ${HBASE_HOME}/conf/hbase-site.xml ${HBASE_HOME}/conf/hbase-site-backup.xml
 
 # STEP: configuration
 echo export JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java)))) >> ${HBASE_HOME}/conf/hbase-env.sh
-# echo export HADOOP_HOME=${HADOOP_HOME} >> ${HADOOP_HOME}/etc/hadoop/hadoop-env.sh
 echo export HBASE_LOG_DIR=${HBASE_PATH}/logs >> ${HBASE_HOME}/conf/hbase-env.sh
-
+echo export HBASE_MANAGES_ZK=false >> ${HBASE_HOME}/conf/hbase-env.sh
 
 # cat > ${HADOOP_HOME}/etc/hadoop/core-site.xml <<EOL
 # <configuration>
@@ -49,10 +51,14 @@ cat > ${HBASE_HOME}/conf/hbase-site.xml <<EOL
     </property>
 
     <property>
-        <name>hbase.zookeeper.property.dataDir</name>
-        <value>${HBASE_HOME}/root/zookeeper</value>
+        <name>hbase.zookeeper.quorum</name>
+        <value>${ZK_NODE[0]},${ZK_NODE[1]},${ZK_NODE[2]},${ZK_NODE[3]},${ZK_NODE[4]}</value>
     </property>
 
+    <property>
+        <name>hbase.zookeeper.property.clientPort</name>
+        <value>2181</value>
+    </property>
 <!--
     <property>
         <name>hbase.unsafe.stream.capability.enforce</name>
